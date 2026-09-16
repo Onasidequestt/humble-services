@@ -1,0 +1,186 @@
+/* Humble Services, Phase 1 review site. Tokens copied from scorecard/index.html so both read as one brand:
+   the crest's grayscale, a serif for headings, a readable sans for everything else. One deliberate light theme. */
+/* ===== BEGIN BRAND TOKENS: Humble Services =====
+   The ONLY place this client's brand values live in the stylesheet. To reskin for another client, change these values,
+   then the Google Fonts link, wordmark and assets/logo.png in the pages (see the site plan's reskinning notes).
+   Rules after this block use these tokens only: the site check fails if a color or font name appears anywhere else. */
+:root {
+  --ink: #1a1a1a;    /* the crest's darkest hexagon */
+  --char: #3d3d3c;   /* the dark hexagons */
+  --mid: #5f5e5b;    /* secondary text, about 6:1 on paper */
+  --soft: #8a8884;   /* the mid hexagons: hints and rules */
+  --line: #d8d6d1;   /* the pale hexagons: rules */
+  --wash: #eeece8;
+  --paper: #f7f6f3;
+  --card: #fff;
+  --on-ink: #fff;    /* text on dark buttons */
+  --stripe: #f3f2ee; /* placeholder stripes */
+  --alert: #8a1c1c;  /* form errors only */
+  --serif: "Source Serif 4", "Iowan Old Style", Palatino, Georgia, serif;
+  --sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --caps: Cinzel, "Trajan Pro", "Iowan Old Style", Georgia, serif; /* echoes the crest's wordmark */
+  color-scheme: light;
+}
+/* ===== END BRAND TOKENS ===== */
+* { box-sizing: border-box; }
+html { font-size: 18px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 1rem; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; height: auto; }
+a { color: var(--ink); text-underline-offset: 3px; }
+a:hover { color: var(--char); }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+.skip { position: absolute; left: -9999px; top: 0; background: var(--ink); color: var(--on-ink); padding: 10px 16px; z-index: 10; }
+.skip:focus { left: 12px; top: 12px; }
+
+.review-banner { background: var(--wash); color: var(--char); border-bottom: 1px solid var(--line); font-size: .8rem; padding: 7px 20px; text-align: center; }
+.dagger { color: var(--mid); } /* marks wording awaiting legal review, as on the scorecard */
+
+/* Header: the crest and wordmark, one "Book a Consultation" link that is always visible, and the main nav inside a
+   <details> "Menu" disclosure. No script: on phones (560px and under) the nav stays folded behind the Menu button,
+   which opens by tap, Enter or Space and shows the site-wide focus outline. Wider screens show the nav unfolded. */
+.site-header { background: var(--paper); border-bottom: 1px solid var(--line); }
+.header-inner { max-width: 1100px; margin: 0 auto; padding: 14px 20px 10px; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px 16px; }
+.brand { grid-column: 1; grid-row: 1; justify-self: start; display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+.brand img { width: 44px; }
+.wordmark { font-family: var(--caps); font-weight: 500; letter-spacing: .12em; font-size: 1rem; line-height: 1.2; }
+.wordmark small { display: block; font-family: var(--sans); letter-spacing: .04em; font-size: .72rem; color: var(--mid); }
+.header-cta { grid-column: 2; grid-row: 1; display: inline-block; border: 1.5px solid var(--ink); border-radius: 8px; padding: 8px 16px; background: var(--ink); color: var(--on-ink); font-size: .88rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.header-cta:hover { background: var(--char); color: var(--on-ink); }
+.nav-menu { grid-column: 1 / -1; grid-row: 2; }
+.nav-toggle { display: inline-flex; align-items: center; gap: 8px; list-style: none; cursor: pointer; border: 1.5px solid var(--ink); border-radius: 8px; padding: 8px 16px; background: var(--card); color: var(--ink); font-size: .88rem; font-weight: 600; }
+.nav-toggle::-webkit-details-marker { display: none; }
+.nav-toggle::after { content: "▾"; font-size: .85em; }
+.nav-menu[open] > .nav-toggle::after { content: "▴"; }
+.site-nav { padding: 2px 0 2px; }
+.site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 2px 18px; }
+.site-nav a { display: inline-block; padding: 6px 0; font-size: .88rem; color: var(--char); text-decoration: none; border-bottom: 2px solid transparent; }
+.site-nav a:hover { color: var(--ink); border-bottom-color: var(--line); }
+.site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--ink); font-weight: 600; }
+/* Browser note: unfolding a closed <details> on wide screens needs ::details-content (Chrome/Edge 131+, Safari 18.4+,
+   Firefox 143+). Ceiling: an older browser shows the Menu button at every width, so desktop visitors there tap once
+   to see the nav; nothing is lost. Upgrade path: the Phase 2 Next.js header renders a plain nav on wide screens. */
+@media (min-width: 561px) {
+  @supports selector(::details-content) {
+    .nav-toggle { display: none; }
+    .nav-menu::details-content { display: block; content-visibility: visible; }
+  }
+}
+
+main { max-width: 1100px; margin: 0 auto; padding: 36px 20px 64px; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.2; margin: 0 0 .5em; text-wrap: balance; }
+h1 { font-size: 2.3rem; }
+h2 { font-size: 1.65rem; margin-top: 0; }
+h3 { font-size: 1.2rem; }
+p { margin: 0 0 1em; }
+.narrow { max-width: 42rem; }
+.lede { font-family: var(--serif); font-style: italic; font-size: 1.3rem; color: var(--char); }
+.eyebrow { font-family: var(--caps); font-size: .8rem; letter-spacing: .14em; color: var(--mid); margin-bottom: .4rem; }
+section.band { padding: 44px 0; border-top: 1px solid var(--line); scroll-margin-top: 16px; }
+section.band:first-of-type { border-top: 0; padding-top: 0; }
+
+.btn { display: inline-block; border-radius: 8px; padding: 13px 24px; border: 1.5px solid var(--ink); background: var(--ink); color: var(--on-ink); text-decoration: none; cursor: pointer; }
+.btn:hover { background: var(--char); color: var(--on-ink); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--wash); color: var(--ink); }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 1.4rem; }
+
+.hero { display: grid; grid-template-columns: 1fr 220px; gap: 40px; align-items: center; }
+.hero .crest { width: 220px; justify-self: end; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 18px; }
+.grid.four { grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px; }
+.card h3 { margin-bottom: .35em; }
+.card p:last-child { margin-bottom: 0; }
+.plain { padding-left: 1.2rem; }
+.plain li { margin-bottom: .4em; }
+.sub-list { margin: 0 0 1em; }
+/* A plain, non-interactive list of topics: no borders or pills, so nothing looks like a button. */
+.topic-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 4px 28px; max-width: 52rem; }
+.topic-list li { position: relative; padding-left: 1.1rem; }
+.topic-list li::before { content: "–"; position: absolute; left: 0; color: var(--soft); }
+
+.steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; counter-reset: step; }
+.steps li { counter-increment: step; border-top: 4px solid var(--char); padding-top: 10px; }
+.steps li::before { content: counter(step); display: block; font-family: var(--caps); color: var(--mid); font-size: .8rem; }
+.steps b { display: block; font-family: var(--serif); font-weight: 500; font-size: 1.1rem; }
+.steps span { display: block; font-size: .88rem; color: var(--mid); }
+
+/* Services: a jump index of the three groups, each with its services linked underneath. */
+.service-index { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 12px 18px; margin-top: 1.6rem; }
+.index-group { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; }
+.index-head { font-family: var(--serif); font-size: 1.2rem; }
+.index-group ul { list-style: none; padding: 0; margin: .3rem 0 0; }
+.index-group li { font-size: .92rem; padding: 3px 0; }
+
+.service { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 22px 24px; margin-bottom: 18px; scroll-margin-top: 16px; }
+.price { font-size: .95rem; color: var(--char); background: var(--wash); border-left: 3px solid var(--soft); padding: 8px 12px; margin: .8rem 0 0; }
+.price .prelim-label { display: block; font-size: .78rem; color: var(--mid); }
+
+.not-list { border-left: 3px solid var(--char); padding-left: 1rem; }
+.empty { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 28px; text-align: center; }
+.empty p { margin: 0; }
+.empty .empty-title { font-family: var(--serif); font-size: 1.3rem; margin-bottom: .4rem; }
+
+/* Placeholders: dashed box, a label no reader can mistake for real content. */
+.placeholder { border: 2px dashed var(--soft); border-radius: 8px; background: repeating-linear-gradient(135deg, var(--card), var(--card) 10px, var(--stripe) 10px, var(--stripe) 20px); padding: 12px 16px; margin: .6rem 0 1rem; color: var(--char); }
+span.placeholder { display: inline-block; padding: 2px 8px; margin: 0; }
+.placeholder .ph-label { display: block; font-size: .78rem; font-weight: 600; letter-spacing: .02em; color: var(--mid); margin: 0 0 .3rem; text-transform: none; }
+span.placeholder .ph-label { display: inline; margin: 0; }
+.placeholder .ph-title { font-family: var(--serif); font-size: 1.3rem; color: var(--ink); margin: .2rem 0 .6rem; }
+.placeholder > :last-child { margin-bottom: 0; }
+
+.draft-legal { border: 2px solid var(--char); border-radius: 8px; padding: 12px 16px; margin-bottom: 1.4rem; background: var(--card); }
+
+form.contact { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; max-width: 46rem; }
+.field { display: grid; gap: 4px; align-content: start; }
+.field.wide, .check, .fine, form.contact .actions, .notice { grid-column: 1 / -1; }
+label, legend { font-size: .9rem; color: var(--char); }
+.opt-label { color: var(--mid); }
+input[type=text], input[type=email], input[type=tel], input[type=url], select, textarea { width: 100%; padding: 11px 12px; border: 1.5px solid var(--soft); border-radius: 8px; background: var(--card); }
+textarea { min-height: 7rem; resize: vertical; }
+input:focus, select:focus, textarea:focus { border-color: var(--char); }
+[aria-invalid="true"] { border-color: var(--alert) !important; }
+fieldset { border: 0; padding: 0; margin: 0; }
+.radios { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.radios label, .check { display: flex; gap: 8px; align-items: flex-start; }
+.check input, .radios input { width: 20px; height: 20px; margin-top: 3px; flex: none; accent-color: var(--ink); }
+.err { color: var(--alert); font-size: .86rem; margin: 0; }
+.fine { font-size: .86rem; color: var(--mid); margin: 0; }
+.notice { background: var(--wash); padding: 12px 16px; border-radius: 6px; margin: 0; }
+
+.site-footer { border-top: 1px solid var(--line); background: var(--wash); }
+.site-footer .inner { max-width: 1100px; margin: 0 auto; padding: 28px 20px 36px; font-size: .86rem; color: var(--mid); display: grid; grid-template-columns: 1fr 1fr; gap: 18px 40px; }
+.site-footer ul { list-style: none; padding: 0; margin: 0; }
+.site-footer li { margin-bottom: .3rem; }
+.site-footer .disclaimer { grid-column: 1 / -1; margin: 0; }
+
+@media (max-width: 800px) {
+  .steps { grid-template-columns: repeat(2, 1fr); row-gap: 18px; }
+  .founder-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  html { font-size: 17px; }
+  h1 { font-size: 1.85rem; }
+  h2 { font-size: 1.4rem; }
+  /* Phone header: crest and wordmark on the first row; Menu (left) and Book a Consultation (right) on the second.
+     The opened list spans the full width below; the link sits on top of the details box, so it stays tappable. */
+  .header-inner { row-gap: 10px; }
+  .brand { grid-column: 1 / -1; } /* full first row, so the wordmark is not squeezed by the link's column */
+  .header-cta { grid-column: 2; grid-row: 2; align-self: start; position: relative; z-index: 1; }
+  .site-nav { padding: 8px 0 0; }
+  .site-nav ul { display: block; }
+  .site-nav a { display: block; padding: 9px 0; border-bottom: 1px solid var(--line); }
+  .site-nav li:last-child a { border-bottom: 0; }
+  .site-nav a[aria-current="page"] { border-bottom: 1px solid var(--line); }
+  .hero { grid-template-columns: 1fr; gap: 12px; }
+  .hero .crest { display: none; } /* the header already carries the crest */
+  form.contact { grid-template-columns: 1fr; }
+  .site-footer .inner { grid-template-columns: 1fr; }
+  .btn { width: 100%; text-align: center; }
+}
+@media print {
+  .review-banner, .site-nav, .nav-toggle, .header-cta, .skip { display: none; }
+}
