@@ -14,15 +14,15 @@
 <style>
 
 :root {
-  --ink: #1a1a1a;   
-  --char: #3d3d3c;  
-  --mid: #5f5e5b;   
-  --soft: #8a8884;  
-  --line: #d8d6d1;  
-  --wash: #eeece8;
-  --paper: #f7f6f3;
+  --ink: #16241a;      --on-ink: #fff;        
+  --char: #2a4630;                    --brand: #2b5138;      
+  --mid: #4a6b50;        --brand-hi: #3a6a49;   
+  --soft: #769475;    --brand-deep: #1f3c2a; 
+  --line: #c8d9bd;  
+  --wash: #e3eeda;  
+  --paper: #f3f8ee;
   --card: #fff;
-  --alert: #8a1c1c; 
+  --alert: #8a2118; 
   --serif: "Source Serif 4", "Iowan Old Style", Palatino, Georgia, serif;
   --sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   --caps: Cinzel, "Trajan Pro", "Iowan Old Style", Georgia, serif; 
@@ -32,7 +32,7 @@
 html { font-size: 18px; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 1rem; line-height: 1.55; -webkit-font-smoothing: antialiased; } 
 button, input, select { font: inherit; color: inherit; }
-:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
 [data-focus]:focus { outline: none; }
 
 .review-banner { background: var(--wash); color: var(--char); border-bottom: 1px solid var(--line); font-size: .78rem; padding: 7px 20px; text-align: center; }
@@ -47,7 +47,7 @@ button, input, select { font: inherit; color: inherit; }
 body.intro-screen .bar { display: none; } 
 
 main { max-width: 720px; margin: 0 auto; padding: 32px 20px 56px; }
-h1, h2, h3, h4 { font-family: var(--serif); font-weight: 500; line-height: 1.2; margin: 0 0 .5em; text-wrap: balance; }
+h1, h2, h3, h4 { font-family: var(--serif); font-weight: 500; color: var(--char); line-height: 1.2; margin: 0 0 .5em; text-wrap: balance; }
 h1 { font-size: 2.1rem; }
 h2 { font-size: 1.6rem; }
 h3 { font-size: 1.3rem; margin-top: 2.6rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
@@ -55,8 +55,8 @@ h4 { font-size: 1.1rem; margin-bottom: .4em; }
 p { margin: 0 0 1em; }
 .dagger { color: var(--mid); }
 
-.primary { border-radius: 8px; padding: 14px 26px; cursor: pointer; border: 1.5px solid var(--ink); background: var(--ink); color: #fff; }
-.primary:hover { background: var(--char); }
+.primary { border-radius: 8px; padding: 14px 26px; cursor: pointer; border: 1.5px solid var(--brand-deep); background: linear-gradient(180deg, var(--brand-hi), var(--brand)); color: var(--on-ink); }
+.primary:hover { background: linear-gradient(180deg, var(--brand), var(--brand-deep)); }
 .primary:active, .opt:active { transform: translateY(1px); }
 .link { background: none; border: 0; padding: 6px 0; color: var(--char); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
 .link:hover { color: var(--ink); }
@@ -81,7 +81,7 @@ p { margin: 0 0 1em; }
 .options { display: grid; gap: 10px; margin-top: 1.4rem; }
 .opt { display: flex; align-items: flex-start; gap: 14px; text-align: left; width: 100%; padding: 15px 16px; background: var(--card); border: 1.5px solid var(--line); border-radius: 10px; cursor: pointer; transition: border-color .12s, background .12s; }
 .opt:hover { border-color: var(--char); }
-.opt.selected { background: var(--ink); border-color: var(--ink); color: #fff; }
+.opt.selected { background: var(--brand); border-color: var(--brand-deep); color: var(--on-ink); }
 .opt .key { flex: none; width: 24px; height: 24px; margin-top: 1px; border: 1px solid var(--line); border-radius: 5px; font-size: .75rem; display: grid; place-items: center; color: var(--mid); }
 .opt.selected .key { border-color: #777; color: #ddd; }
 .nav { display: flex; justify-content: space-between; margin-top: 1.2rem; }
@@ -99,7 +99,7 @@ p { margin: 0 0 1em; }
 .legend { font-size: .76rem; color: var(--mid); text-align: center; margin-top: 6px; }
 .bandstrip { list-style: none; padding: 0; margin: 1.2rem 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
 .bandstrip li { border-top: 4px solid var(--line); padding-top: 6px; font-size: .74rem; color: var(--mid); line-height: 1.3; }
-.bandstrip li[aria-current="true"] { border-top-color: var(--ink); color: var(--ink); font-weight: 600; }
+.bandstrip li[aria-current="true"] { border-top-color: var(--brand); color: var(--brand); font-weight: 600; }
 .bandstrip span { display: block; font-variant-numeric: tabular-nums; font-weight: 400; }
 .holdback { color: var(--char); font-size: .92rem; margin-top: 1rem; border-left: 3px solid var(--char); padding-left: .8rem; }
 .holdback p { margin: 0 0 .2rem; }
@@ -131,7 +131,7 @@ input:focus { border-color: var(--char); }
 input[aria-invalid="true"] { border-color: var(--alert); }
 .err { color: var(--alert); font-size: .85rem; margin: 0; }
 .check { display: flex; gap: 10px; align-items: flex-start; font-size: .9rem; }
-.check input { width: 20px; height: 20px; margin-top: 3px; flex: none; accent-color: var(--ink); }
+.check input { width: 20px; height: 20px; margin-top: 3px; flex: none; accent-color: var(--brand); }
 .fine { font-size: .85rem; color: var(--mid); margin: 0; }
 .notice { background: var(--wash); padding: 12px 16px; border-radius: 4px; }
 .quiet { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 24px; margin-top: 2.2rem; padding-top: 1rem; border-top: 1px solid var(--line); font-size: .92rem; }
@@ -206,7 +206,7 @@ footer { max-width: 720px; margin: 0 auto; font-size: .75rem; color: var(--mid);
     unsure: 'Start by finding out the answer you weren’t sure of, below.',
     none: 'None of your answers fell in the weaker half. The work ahead is keeping it that way as the business and your plans change.',
   };
-  const INK = [0x1a, 0x1a, 0x1a], WASH = [0xee, 0xec, 0xe8], WHITE = [255, 255, 255];
+  const INK = [0x16, 0x24, 0x1a], WASH = [0xe3, 0xee, 0xda], WHITE = [255, 255, 255];
   const lum = c => { const l = c.map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }); return 0.2126 * l[0] + 0.7152 * l[1] + 0.0722 * l[2]; };
   const contrast = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
   const rgb = c => 'rgb(' + c.join(',') + ')';

@@ -1,21 +1,36 @@
-/* Humble Services, Phase 1 review site. Tokens copied from scorecard/index.html so both read as one brand:
-   the crest's grayscale, a serif for headings, a readable sans for everything else. One deliberate light theme. */
+/* Humble Services, Phase 1 review site. A serif for headings, a readable sans for everything else, one deliberate
+   light theme, and an earthy green scale whose steps sit at the same luminances as the crest's hexagons. */
 /* ===== BEGIN BRAND TOKENS: Humble Services =====
    The ONLY place this client's brand values live in the stylesheet. To reskin for another client, change these values,
    then the Google Fonts link, wordmark and assets/logo.png in the pages (see the site plan's reskinning notes).
-   Rules after this block use these tokens only: the site check fails if a color or font name appears anywhere else. */
+   Rules after this block use these tokens only: the site check fails if a color or font name appears anywhere else.
+
+   The green scale. The crest is achromatic - every pixel of assets/logo.png and of the original in
+   source_docs/media/humble_logo_from_docs.png is grey (max channel spread 7/255, i.e. compression noise). What the
+   crest actually contributes is its TONAL LADDER: the hexagons plateau at #000000, #343434, #646464, #989898,
+   #c4c4c4 and #f0f0f0. Each green below was solved to sit at the SAME WCAG relative luminance as its crest step, so
+   the artwork's light-to-dark rhythm is preserved exactly and only the hue moves - forest at the dark end drifting
+   to olive at the light end, saturation raised on the light and mid steps (2026-09-15) so the page reads as green at a glance while the
+   luminance ladder is untouched: every step still sits within 0.06 relative luminance of its crest grey and every
+   declared pair still clears WCAG AA. Muted, not vivid - the most saturated step is the button ground.
+   Every text pair is verified by design/check_palette.py, which recomputes the ratios from these values. */
 :root {
-  --ink: #1a1a1a;    /* the crest's darkest hexagon */
-  --char: #3d3d3c;   /* the dark hexagons */
-  --mid: #5f5e5b;    /* secondary text, about 6:1 on paper */
-  --soft: #8a8884;   /* the mid hexagons: hints and rules */
-  --line: #d8d6d1;   /* the pale hexagons: rules */
-  --wash: #eeece8;
-  --paper: #f7f6f3;
+  /* Green scale, dark to light. Luminance-matched to the crest steps named in brackets. */
+  --ink: #16241a;        /* [near #000000] body text, headings */
+  --char: #2a4630;       /* [#343434] secondary headings, nav, labels */
+  --mid: #4a6b50;        /* [#646464] quiet text, still 5.5:1 on paper */
+  --soft: #769475;       /* [#989898] input borders and hints, 3.35:1 on white */
+  --line: #c8d9bd;       /* [#c4c4c4] hairline rules */
+  --wash: #e3eeda;       /* [#f0f0f0] banded backgrounds */
+  --stripe: #ecf3e4;     /* placeholder stripes */
+  --paper: #f3f8ee;      /* page ground */
   --card: #fff;
-  --on-ink: #fff;    /* text on dark buttons */
-  --stripe: #f3f2ee; /* placeholder stripes */
-  --alert: #8a1c1c;  /* form errors only */
+  --on-ink: #fff;        /* text on the green buttons */
+  /* The one saturated-but-earthy family, used for action and accent only. */
+  --brand: #2b5138;      /* button ground, accent rules */
+  --brand-hi: #3a6a49;   /* top of the button gradient */
+  --brand-deep: #1f3c2a; /* bottom of the button gradient, and hover */
+  --alert: #8a2118;      /* form errors only */
   --serif: "Source Serif 4", "Iowan Old Style", Palatino, Georgia, serif;
   --sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   --caps: Cinzel, "Trajan Pro", "Iowan Old Style", Georgia, serif; /* echoes the crest's wordmark */
@@ -29,9 +44,9 @@ img { max-width: 100%; height: auto; }
 a { color: var(--ink); text-underline-offset: 3px; }
 a:hover { color: var(--char); }
 button, input, select, textarea { font: inherit; color: inherit; }
-:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
 
-.skip { position: absolute; left: -9999px; top: 0; background: var(--ink); color: var(--on-ink); padding: 10px 16px; z-index: 10; }
+.skip { position: absolute; left: -9999px; top: 0; background: var(--brand); color: var(--on-ink); padding: 10px 16px; z-index: 10; }
 .skip:focus { left: 12px; top: 12px; }
 
 .review-banner { background: var(--wash); color: var(--char); border-bottom: 1px solid var(--line); font-size: .8rem; padding: 7px 20px; text-align: center; }
@@ -40,16 +55,16 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* Header: the crest and wordmark, one "Book a Consultation" link that is always visible, and the main nav inside a
    <details> "Menu" disclosure. No script: on phones (560px and under) the nav stays folded behind the Menu button,
    which opens by tap, Enter or Space and shows the site-wide focus outline. Wider screens show the nav unfolded. */
-.site-header { background: var(--paper); border-bottom: 1px solid var(--line); }
+.site-header { background: linear-gradient(180deg, var(--wash), var(--paper)); border-bottom: 1px solid var(--line); }
 .header-inner { max-width: 1100px; margin: 0 auto; padding: 14px 20px 10px; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px 16px; }
 .brand { grid-column: 1; grid-row: 1; justify-self: start; display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
 .brand img { width: 44px; }
 .wordmark { font-family: var(--caps); font-weight: 500; letter-spacing: .12em; font-size: 1rem; line-height: 1.2; }
 .wordmark small { display: block; font-family: var(--sans); letter-spacing: .04em; font-size: .72rem; color: var(--mid); }
-.header-cta { grid-column: 2; grid-row: 1; display: inline-block; border: 1.5px solid var(--ink); border-radius: 8px; padding: 8px 16px; background: var(--ink); color: var(--on-ink); font-size: .88rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
-.header-cta:hover { background: var(--char); color: var(--on-ink); }
+.header-cta { grid-column: 2; grid-row: 1; display: inline-block; border: 1.5px solid var(--brand-deep); border-radius: 8px; padding: 8px 16px; background: linear-gradient(180deg, var(--brand-hi), var(--brand)); color: var(--on-ink); font-size: .88rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.header-cta:hover { background: linear-gradient(180deg, var(--brand), var(--brand-deep)); color: var(--on-ink); }
 .nav-menu { grid-column: 1 / -1; grid-row: 2; }
-.nav-toggle { display: inline-flex; align-items: center; gap: 8px; list-style: none; cursor: pointer; border: 1.5px solid var(--ink); border-radius: 8px; padding: 8px 16px; background: var(--card); color: var(--ink); font-size: .88rem; font-weight: 600; }
+.nav-toggle { display: inline-flex; align-items: center; gap: 8px; list-style: none; cursor: pointer; border: 1.5px solid var(--brand); border-radius: 8px; padding: 8px 16px; background: var(--card); color: var(--ink); font-size: .88rem; font-weight: 600; }
 .nav-toggle::-webkit-details-marker { display: none; }
 .nav-toggle::after { content: "▾"; font-size: .85em; }
 .nav-menu[open] > .nav-toggle::after { content: "▴"; }
@@ -57,7 +72,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 2px 18px; }
 .site-nav a { display: inline-block; padding: 6px 0; font-size: .88rem; color: var(--char); text-decoration: none; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: var(--ink); border-bottom-color: var(--line); }
-.site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--ink); font-weight: 600; }
+.site-nav a[aria-current="page"] { color: var(--brand); border-bottom-color: var(--brand); font-weight: 600; }
 /* Browser note: unfolding a closed <details> on wide screens needs ::details-content (Chrome/Edge 131+, Safari 18.4+,
    Firefox 143+). Ceiling: an older browser shows the Menu button at every width, so desktop visitors there tap once
    to see the nav; nothing is lost. Upgrade path: the Phase 2 Next.js header renders a plain nav on wide screens. */
@@ -69,21 +84,21 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 main { max-width: 1100px; margin: 0 auto; padding: 36px 20px 64px; }
-h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.2; margin: 0 0 .5em; text-wrap: balance; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; color: var(--char); line-height: 1.2; margin: 0 0 .5em; text-wrap: balance; }
 h1 { font-size: 2.3rem; }
 h2 { font-size: 1.65rem; margin-top: 0; }
 h3 { font-size: 1.2rem; }
 p { margin: 0 0 1em; }
 .narrow { max-width: 42rem; }
 .lede { font-family: var(--serif); font-style: italic; font-size: 1.3rem; color: var(--char); }
-.eyebrow { font-family: var(--caps); font-size: .8rem; letter-spacing: .14em; color: var(--mid); margin-bottom: .4rem; }
+.eyebrow { font-family: var(--caps); font-size: .8rem; letter-spacing: .14em; color: var(--brand); margin-bottom: .4rem; }
 section.band { padding: 44px 0; border-top: 1px solid var(--line); scroll-margin-top: 16px; }
 section.band:first-of-type { border-top: 0; padding-top: 0; }
 
-.btn { display: inline-block; border-radius: 8px; padding: 13px 24px; border: 1.5px solid var(--ink); background: var(--ink); color: var(--on-ink); text-decoration: none; cursor: pointer; }
-.btn:hover { background: var(--char); color: var(--on-ink); }
-.btn.ghost { background: transparent; color: var(--ink); }
-.btn.ghost:hover { background: var(--wash); color: var(--ink); }
+.btn { display: inline-block; border-radius: 8px; padding: 13px 24px; border: 1.5px solid var(--brand-deep); background: linear-gradient(180deg, var(--brand-hi), var(--brand)); color: var(--on-ink); text-decoration: none; cursor: pointer; }
+.btn:hover { background: linear-gradient(180deg, var(--brand), var(--brand-deep)); color: var(--on-ink); }
+.btn.ghost { background: transparent; border-color: var(--brand); color: var(--brand); }
+.btn.ghost:hover { background: var(--wash); color: var(--brand-deep); }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 1.4rem; }
 
 .hero { display: grid; grid-template-columns: 1fr 220px; gap: 40px; align-items: center; }
@@ -92,6 +107,7 @@ section.band:first-of-type { border-top: 0; padding-top: 0; }
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 18px; }
 .grid.four { grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); }
 .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px; }
+.card h3 { color: var(--brand); }
 .card h3 { margin-bottom: .35em; }
 .card p:last-child { margin-bottom: 0; }
 .plain { padding-left: 1.2rem; }
@@ -103,7 +119,7 @@ section.band:first-of-type { border-top: 0; padding-top: 0; }
 .topic-list li::before { content: "–"; position: absolute; left: 0; color: var(--soft); }
 
 .steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; counter-reset: step; }
-.steps li { counter-increment: step; border-top: 4px solid var(--char); padding-top: 10px; }
+.steps li { counter-increment: step; border-top: 4px solid var(--brand); padding-top: 10px; }
 .steps li::before { content: counter(step); display: block; font-family: var(--caps); color: var(--mid); font-size: .8rem; }
 .steps b { display: block; font-family: var(--serif); font-weight: 500; font-size: 1.1rem; }
 .steps span { display: block; font-size: .88rem; color: var(--mid); }
@@ -111,15 +127,15 @@ section.band:first-of-type { border-top: 0; padding-top: 0; }
 /* Services: a jump index of the three groups, each with its services linked underneath. */
 .service-index { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 12px 18px; margin-top: 1.6rem; }
 .index-group { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; }
-.index-head { font-family: var(--serif); font-size: 1.2rem; }
+.index-head { font-family: var(--serif); font-size: 1.2rem; color: var(--char); }
 .index-group ul { list-style: none; padding: 0; margin: .3rem 0 0; }
 .index-group li { font-size: .92rem; padding: 3px 0; }
 
 .service { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 22px 24px; margin-bottom: 18px; scroll-margin-top: 16px; }
-.price { font-size: .95rem; color: var(--char); background: var(--wash); border-left: 3px solid var(--soft); padding: 8px 12px; margin: .8rem 0 0; }
+.price { font-size: .95rem; color: var(--char); background: var(--wash); border-left: 3px solid var(--brand); padding: 8px 12px; margin: .8rem 0 0; }
 .price .prelim-label { display: block; font-size: .78rem; color: var(--mid); }
 
-.not-list { border-left: 3px solid var(--char); padding-left: 1rem; }
+.not-list { border-left: 3px solid var(--brand); padding-left: 1rem; }
 .empty { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 28px; text-align: center; }
 .empty p { margin: 0; }
 .empty .empty-title { font-family: var(--serif); font-size: 1.3rem; margin-bottom: .4rem; }
@@ -132,7 +148,7 @@ span.placeholder .ph-label { display: inline; margin: 0; }
 .placeholder .ph-title { font-family: var(--serif); font-size: 1.3rem; color: var(--ink); margin: .2rem 0 .6rem; }
 .placeholder > :last-child { margin-bottom: 0; }
 
-.draft-legal { border: 2px solid var(--char); border-radius: 8px; padding: 12px 16px; margin-bottom: 1.4rem; background: var(--card); }
+.draft-legal { border: 2px solid var(--brand); border-radius: 8px; padding: 12px 16px; margin-bottom: 1.4rem; background: var(--card); }
 
 form.contact { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; max-width: 46rem; }
 .field { display: grid; gap: 4px; align-content: start; }
@@ -141,17 +157,17 @@ label, legend { font-size: .9rem; color: var(--char); }
 .opt-label { color: var(--mid); }
 input[type=text], input[type=email], input[type=tel], input[type=url], select, textarea { width: 100%; padding: 11px 12px; border: 1.5px solid var(--soft); border-radius: 8px; background: var(--card); }
 textarea { min-height: 7rem; resize: vertical; }
-input:focus, select:focus, textarea:focus { border-color: var(--char); }
+input:focus, select:focus, textarea:focus { border-color: var(--brand); }
 [aria-invalid="true"] { border-color: var(--alert) !important; }
 fieldset { border: 0; padding: 0; margin: 0; }
 .radios { display: flex; flex-wrap: wrap; gap: 6px 20px; }
 .radios label, .check { display: flex; gap: 8px; align-items: flex-start; }
-.check input, .radios input { width: 20px; height: 20px; margin-top: 3px; flex: none; accent-color: var(--ink); }
+.check input, .radios input { width: 20px; height: 20px; margin-top: 3px; flex: none; accent-color: var(--brand); }
 .err { color: var(--alert); font-size: .86rem; margin: 0; }
 .fine { font-size: .86rem; color: var(--mid); margin: 0; }
 .notice { background: var(--wash); padding: 12px 16px; border-radius: 6px; margin: 0; }
 
-.site-footer { border-top: 1px solid var(--line); background: var(--wash); }
+.site-footer { border-top: 2px solid var(--brand); background: linear-gradient(180deg, var(--paper), var(--wash)); }
 .site-footer .inner { max-width: 1100px; margin: 0 auto; padding: 28px 20px 36px; font-size: .86rem; color: var(--mid); display: grid; grid-template-columns: 1fr 1fr; gap: 18px 40px; }
 .site-footer ul { list-style: none; padding: 0; margin: 0; }
 .site-footer li { margin-bottom: .3rem; }
