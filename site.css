@@ -173,6 +173,17 @@ fieldset { border: 0; padding: 0; margin: 0; }
 .site-footer li { margin-bottom: .3rem; }
 .site-footer .disclaimer { grid-column: 1 / -1; margin: 0; }
 
+/* Platform preview: screenshots and the launch-check list. */
+.shots { display: grid; gap: 22px; margin-top: 1.2rem; max-width: 62rem; }
+.shot { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px; }
+.shot img { display: block; border: 1px solid var(--line); border-radius: 6px; }
+.shot figcaption { font-size: .86rem; color: var(--mid); margin-top: 8px; }
+.shot.phone { max-width: 20rem; }
+.gate-list { list-style: none; padding: 0; margin: 1.2rem 0 0; display: grid; gap: 10px; max-width: 52rem; }
+.gate-list li { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; }
+.gate-list b { display: block; font-family: var(--serif); font-weight: 500; font-size: 1.1rem; color: var(--char); }
+.gate-list .status { display: inline-block; font-size: .8rem; font-weight: 600; color: var(--char); background: var(--wash); border-radius: 999px; padding: 1px 10px; margin: 4px 8px 4px 0; }
+
 @media (max-width: 800px) {
   .steps { grid-template-columns: repeat(2, 1fr); row-gap: 18px; }
   .founder-grid { grid-template-columns: 1fr; }
