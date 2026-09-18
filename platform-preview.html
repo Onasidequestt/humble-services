@@ -90,11 +90,11 @@
     <li><b>A prospect can book a call</b><span class="status">Works in our test version</span>As in the booking pictures above.</li>
     <li><b>A call can be recorded and processed</b><span class="status">Partly</span>Call notes and their approval work. Recording waits for your attorney's advice on consent.</li>
     <li><b>A proposal can be sent and signed</b><span class="status">Partly</span>Signing works in our test version. Until email is connected, the proposal link is passed on by hand.</li>
-    <li><b>Payment can be collected correctly</b><span class="status">Not yet</span>No card payment service is connected yet, so payments are recorded by hand in the test version.</li>
+    <li><b>Payment can be collected correctly</b><span class="status">Works in our test version</span>An invoice opens a payment page run by Stripe, and the client pays there. The invoice is marked paid only from a payment notice signed by Stripe, and only when the amount matches. After paying, the client comes back to a page that tells them what we have actually recorded. This is Stripe's test mode: no real money has moved, and Stripe is not yet sending those notices to us by itself.</li>
     <li><b>Onboarding happens automatically</b><span class="status">Partly</span>Signing sets up the client's records and account invitation by itself. The welcome email is not sent yet, so for now the link is passed on by hand.</li>
     <li><b>Deliverables can be created and delivered</b><span class="status">Works in our test version</span>A report is added and shared with the owner through a link that expires.</li>
     <li><b>Revenue and expenses hit the internal dashboard</b><span class="status">Partly</span>Signed contract values and invoice status show. Expenses wait for your choice of accounting program.</li>
-    <li><b>One complete test client journey works without manual patching</b><span class="status">Partly</span>The whole journey runs in our test version, but the email and payment steps are still done by hand.</li>
+    <li><b>One complete test client journey works without manual patching</b><span class="status">Partly</span>The whole journey runs in our test version. The email step is still done by hand, and the payment step in this run uses a stand-in for Stripe; paying through Stripe itself is checked separately.</li>
   </ul>
 </section>
 
