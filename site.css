@@ -20,10 +20,10 @@
   --char: #2a4630;       /* [#343434] secondary headings, nav, labels */
   --mid: #4a6b50;        /* [#646464] quiet text, still 5.5:1 on paper */
   --soft: #769475;       /* [#989898] input borders and hints, 3.35:1 on white */
-  --line: #c8d9bd;       /* [#c4c4c4] hairline rules */
-  --wash: #e3eeda;       /* [#f0f0f0] banded backgrounds */
-  --stripe: #ecf3e4;     /* placeholder stripes */
-  --paper: #f3f8ee;      /* page ground */
+  --line: #d9d9d7;       /* neutralised: look E (white ground, solid green nav bar) */
+  --wash: #f5f5f4;       /* look E: near-white neutral grey */
+  --stripe: #f0f0ef;     /* look E: near-white neutral */
+  --paper: #ffffff;      /* look E: pure white ground */
   --card: #fff;
   --on-ink: #fff;        /* text on the green buttons */
   /* The one saturated-but-earthy family, used for action and accent only. */
@@ -45,6 +45,11 @@ a { color: var(--ink); text-underline-offset: 3px; }
 a:hover { color: var(--char); }
 button, input, select, textarea { font: inherit; color: inherit; }
 :focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+/* Anything that sits on a solid --brand (green) ground needs a LIGHT outline instead: the site-wide green
+   outline above is invisible against its own color. Found 2026-09-26 (look E put a solid green bar under
+   the nav): grep every "background: ... var(--brand)" rule in this file and list the focusable things
+   inside it here, so the next brand-background block is not missed the same way. */
+.nav-menu :focus-visible, .nav-toggle:focus-visible { outline-color: var(--on-ink); }
 
 .skip { position: absolute; left: -9999px; top: 0; background: var(--brand); color: var(--on-ink); padding: 10px 16px; z-index: 10; }
 .skip:focus { left: 12px; top: 12px; }
@@ -53,7 +58,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .dagger { color: var(--mid); } /* marks wording awaiting legal review, as on the scorecard */
 
 /* Header: the crest and wordmark, one "Book a Consultation" link that is always visible, and the main nav inside a
-   <details> "Menu" disclosure. No script: on phones (560px and under) the nav stays folded behind the Menu button,
+   <details> "Menu" disclosure. No script: at 999px and under the nav stays folded behind the Menu button,
    which opens by tap, Enter or Space and shows the site-wide focus outline. Wider screens show the nav unfolded. */
 .site-header { background: linear-gradient(180deg, var(--wash), var(--paper)); border-bottom: 1px solid var(--line); }
 .header-inner { max-width: 1100px; margin: 0 auto; padding: 14px 20px 10px; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px 16px; }
@@ -63,20 +68,29 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .wordmark small { display: block; font-family: var(--sans); letter-spacing: .04em; font-size: .72rem; color: var(--mid); }
 .header-cta { grid-column: 2; grid-row: 1; display: inline-block; border: 1.5px solid var(--brand-deep); border-radius: 8px; padding: 8px 16px; background: linear-gradient(180deg, var(--brand-hi), var(--brand)); color: var(--on-ink); font-size: .88rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
 .header-cta:hover { background: linear-gradient(180deg, var(--brand), var(--brand-deep)); color: var(--on-ink); }
-.nav-menu { grid-column: 1 / -1; grid-row: 2; }
-.nav-toggle { display: inline-flex; align-items: center; gap: 8px; list-style: none; cursor: pointer; border: 1.5px solid var(--brand); border-radius: 8px; padding: 8px 16px; background: var(--card); color: var(--ink); font-size: .88rem; font-weight: 600; }
+/* look E: the nav row itself is a solid green bar (the header above stays the white/wash gradient so the crest and
+   wordmark keep their original card-on-white treatment - only the nav row is painted, not the whole header). */
+/* fix D, 2026-09-26: padding/gap trims tried in fix C did not fix the wrap at 561px. A flex-wrap: nowrap content-
+   width estimate (~740px) badly undercounted the real cost (the nav row also carries the grid layout, the
+   details/summary box and the toggle it hides at this width): a direct binary search in real Chromium, setting
+   the viewport across a scan of widths and counting rows, found the true one-row threshold between 940px (still
+   wraps) and 945px (fits). Restored padding/gap to their original values (not needed once the breakpoint below
+   is moved) and moved the unfold breakpoint from 561px to 1000px, a real margin over the measured threshold so
+   normal run-to-run variance (fonts, subpixel rounding) can't tip it into two rows again. */
+.nav-menu { grid-column: 1 / -1; grid-row: 2; background: var(--brand); border-radius: 8px; padding: 2px 14px; margin: 2px 0 0; }
+.nav-toggle { display: inline-flex; align-items: center; gap: 8px; list-style: none; cursor: pointer; border: 1.5px solid var(--on-ink); border-radius: 8px; padding: 8px 16px; background: transparent; color: var(--on-ink); font-size: .88rem; font-weight: 600; }
 .nav-toggle::-webkit-details-marker { display: none; }
 .nav-toggle::after { content: "▾"; font-size: .85em; }
 .nav-menu[open] > .nav-toggle::after { content: "▴"; }
 .site-nav { padding: 2px 0 2px; }
 .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 2px 18px; }
-.site-nav a { display: inline-block; padding: 6px 0; font-size: .88rem; color: var(--char); text-decoration: none; border-bottom: 2px solid transparent; }
-.site-nav a:hover { color: var(--ink); border-bottom-color: var(--line); }
-.site-nav a[aria-current="page"] { color: var(--brand); border-bottom-color: var(--brand); font-weight: 600; }
+.site-nav a { display: inline-block; padding: 6px 0; font-size: .88rem; color: var(--on-ink); text-decoration: none; border-bottom: 2px solid transparent; }
+.site-nav a:hover { color: var(--on-ink); border-bottom-color: var(--on-ink); background: var(--brand-hi); }
+.site-nav a[aria-current="page"] { color: var(--on-ink); border-bottom-color: var(--on-ink); font-weight: 700; }
 /* Browser note: unfolding a closed <details> on wide screens needs ::details-content (Chrome/Edge 131+, Safari 18.4+,
    Firefox 143+). Ceiling: an older browser shows the Menu button at every width, so desktop visitors there tap once
    to see the nav; nothing is lost. Upgrade path: the Phase 2 Next.js header renders a plain nav on wide screens. */
-@media (min-width: 561px) {
+@media (min-width: 1000px) {
   @supports selector(::details-content) {
     .nav-toggle { display: none; }
     .nav-menu::details-content { display: block; content-visibility: visible; }
