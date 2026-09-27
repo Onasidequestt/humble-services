@@ -66,8 +66,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .brand img { width: 44px; }
 .wordmark { font-family: var(--caps); font-weight: 500; letter-spacing: .12em; font-size: 1rem; line-height: 1.2; }
 .wordmark small { display: block; font-family: var(--sans); letter-spacing: .04em; font-size: .72rem; color: var(--mid); }
-.header-cta { grid-column: 2; grid-row: 1; display: inline-block; border: 1.5px solid var(--brand-deep); border-radius: 8px; padding: 8px 16px; background: linear-gradient(180deg, var(--brand-hi), var(--brand)); color: var(--on-ink); font-size: .88rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
-.header-cta:hover { background: linear-gradient(180deg, var(--brand), var(--brand-deep)); color: var(--on-ink); }
+.header-cta { grid-column: 2; grid-row: 1; display: inline-block; border: 1.5px solid var(--brand-deep); border-radius: 8px; padding: 8px 16px; background: linear-gradient(180deg, var(--brand-hi), var(--brand), var(--brand-deep)) 0 0 / 100% 200%; color: var(--on-ink); font-size: .88rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.header-cta:hover { background-position: 0 100%; color: var(--on-ink); } /* the lower half of the same gradient: brand to brand-deep, as before, but it can glide */
 /* look E: the nav row itself is a solid green bar (the header above stays the white/wash gradient so the crest and
    wordmark keep their original card-on-white treatment - only the nav row is painted, not the whole header). */
 /* fix D, 2026-09-26: padding/gap trims tried in fix C did not fix the wrap at 561px. A flex-wrap: nowrap content-
@@ -109,8 +109,8 @@ p { margin: 0 0 1em; }
 section.band { padding: 44px 0; border-top: 1px solid var(--line); scroll-margin-top: 16px; }
 section.band:first-of-type { border-top: 0; padding-top: 0; }
 
-.btn { display: inline-block; border-radius: 8px; padding: 13px 24px; border: 1.5px solid var(--brand-deep); background: linear-gradient(180deg, var(--brand-hi), var(--brand)); color: var(--on-ink); text-decoration: none; cursor: pointer; }
-.btn:hover { background: linear-gradient(180deg, var(--brand), var(--brand-deep)); color: var(--on-ink); }
+.btn { display: inline-block; border-radius: 8px; padding: 13px 24px; border: 1.5px solid var(--brand-deep); background: linear-gradient(180deg, var(--brand-hi), var(--brand), var(--brand-deep)) 0 0 / 100% 200%; color: var(--on-ink); text-decoration: none; cursor: pointer; }
+.btn:hover { background-position: 0 100%; color: var(--on-ink); }
 .btn.ghost { background: transparent; border-color: var(--brand); color: var(--brand); }
 .btn.ghost:hover { background: var(--wash); color: var(--brand-deep); }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 1.4rem; }
@@ -222,6 +222,33 @@ fieldset { border: 0; padding: 0; margin: 0; }
   .site-footer .inner { grid-template-columns: 1fr; }
   .btn { width: 100%; text-align: center; }
 }
+/* ===== MOTION (2026-09-27: calm and professional) =====
+   Everything that moves sits inside this ONE block, so a visitor who asks for reduced motion gets the site exactly as
+   it was before motion existed: there is no second rule to override and none to forget. Only colour, opacity, the
+   buttons' gradient position and the height of things that open are animated - never position or scale, so there is
+   no bounce, no slide and no parallax. Each feature is plain CSS that an older browser ignores, leaving the instant
+   change it had before; no content ever waits on an animation to become visible. Durations stay at or under 220ms.
+   Checked by site_tools/check_motion.js (static rules + real-browser rungs, each proven by a red mutant). */
+@media (prefers-reduced-motion: no-preference) {
+  :root { interpolate-size: allow-keywords; } /* lets heights ease to "auto" (Chrome/Edge 129+); elsewhere they snap */
+  html { scroll-behavior: smooth; } /* in-page jumps (Services index, skip link) glide instead of cutting */
+  /* Page to page: a 200ms cross-fade between pages of this site (Chrome/Edge 126+, Safari 18.2+; others cut). */
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .2s; }
+  /* Hover feedback. The focus outline stays instant on purpose: a keyboard user must see it at once. */
+  a { transition: color .15s ease, border-color .15s ease, background-color .15s ease; }
+  .btn, .header-cta { transition: background-position .18s ease, background-color .18s ease, color .15s ease, border-color .15s ease; }
+  input, select, textarea { transition: border-color .15s ease; }
+  /* Contact form: an error or the notice fades in and its space opens smoothly, instead of the form jumping. */
+  .err, .notice { overflow-y: clip; transition: opacity .2s ease, block-size .2s ease; }
+  @starting-style { .err, .notice { opacity: 0; block-size: 0; } }
+}
+/* The phone Menu unfolds and folds. Only below the 1000px unfold breakpoint: above it the nav is always open. */
+@media (prefers-reduced-motion: no-preference) and (max-width: 999px) {
+  .nav-menu::details-content { block-size: 0; overflow-y: clip; opacity: 0; transition: block-size .22s ease, opacity .22s ease, content-visibility .22s allow-discrete; }
+  .nav-menu[open]::details-content { block-size: auto; opacity: 1; }
+}
+/* ===== END MOTION ===== */
 @media print {
   .review-banner, .site-nav, .nav-toggle, .header-cta, .skip { display: none; }
 }

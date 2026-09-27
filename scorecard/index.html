@@ -92,7 +92,11 @@ p { margin: 0 0 1em; }
 
 
 .progress { height: 6px; background: var(--wash); border-radius: 3px; overflow: hidden; margin-bottom: 18px; }
-.progress span { display: block; height: 100%; background: var(--char); transition: width .25s ease; }
+.progress span { display: block; height: 100%; background: var(--char); animation: hs-grow .25s ease; }
+@keyframes hs-grow { from { width: var(--from); } }
+#app > * { animation: hs-in .18s ease both; }
+@keyframes hs-in { from { opacity: 0; } }
+@view-transition { navigation: auto; }
 .meta { color: var(--mid); font-size: .85rem; margin-bottom: .6rem; }
 .meta b { color: var(--char); font-weight: 600; }
 .options { display: grid; gap: 10px; margin-top: 1.4rem; }
@@ -178,6 +182,7 @@ footer { max-width: 720px; margin: 0 auto; font-size: .75rem; color: var(--mid);
 }
 @media (prefers-reduced-motion: reduce) {
   .progress span, .opt { transition: none; }
+  .progress span, #app > *, ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
 @media print {
   body { background: #fff; font-size: 12pt; }
@@ -200,6 +205,7 @@ footer { max-width: 720px; margin: 0 auto; font-size: .75rem; color: var(--mid);
   const CAP_BELOW = 60;
   const UNSURE_SCORE = 1;
   const CALL = 'free Business Transition Conversation';
+  const FORMS_BASE_URL = '';
   const LEGAL = {
     stays: 'Your answers stay in this browser and are not sent anywhere unless you choose to send them.',
     educational: 'An educational self-assessment, not a valuation or professional advice.',
@@ -214,6 +220,7 @@ footer { max-width: 720px; margin: 0 auto; font-size: .75rem; color: var(--mid);
     consent: 'Please contact me about my inquiry.',
     asks: 'Sending this asks Humble Services to contact you about your inquiry.',
     use_only: LEGAL.use_only,
+    letters: LEGAL.letters,
   };
   const SITE_LEGAL_LINES = Object.values(SITE_LEGAL);
   const ALL_LEGAL_LINES = LEGAL_LINES.concat(SITE_LEGAL_LINES.filter(t => !LEGAL_LINES.includes(t)));
@@ -629,7 +636,7 @@ footer { max-width: 720px; margin: 0 auto; font-size: .75rem; color: var(--mid);
   function holdHeading(r) {
     return r.holds_back.reduce((n, h) => n + (h.names || 1), 0) === 1 ? 'One thing holds this back' : 'What holds this back';
   }
-  const api = { VERSION, MAX, CAP_BELOW, UNSURE_SCORE, CALL, LEGAL, LEGAL_LINES, SITE_LEGAL, SITE_LEGAL_LINES, ALL_LEGAL_LINES, B360_NOTE, START_EMPTY, hexColors, contrast, FOUNDER_NOTE, STAGES, DIMENSIONS_360, AREAS, PROFILE,
+  const api = { VERSION, MAX, CAP_BELOW, UNSURE_SCORE, CALL, FORMS_BASE_URL, LEGAL, LEGAL_LINES, SITE_LEGAL, SITE_LEGAL_LINES, ALL_LEGAL_LINES, B360_NOTE, START_EMPTY, hexColors, contrast, FOUNDER_NOTE, STAGES, DIMENSIONS_360, AREAS, PROFILE,
     QUESTIONS, STAFF, STEP_ORDER, BANDS, SOLO_TOP, FLAGS, NEAR, SOON, bandFor, bandsFor, questionsFor, stepsFor, joinNames, evaluate, holdHeading };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.Scorecard = api;
@@ -649,7 +656,7 @@ footer { max-width: 720px; margin: 0 auto; font-size: .75rem; color: var(--mid);
   const DAGGER = '';
   const ADVANCE_MS = 450;
   const SETTLE_MS = 500;
-  let timer = 0, shownAt = 0;
+  let timer = 0, shownAt = 0, prevPct = 0;
   const fresh = () => ({ step: -1, profile: {}, answers: {} });
   function load() {
     try {
@@ -658,6 +665,17 @@ footer { max-width: 720px; margin: 0 auto; font-size: .75rem; color: var(--mid);
     } catch (e) { return null; }
   }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  const VISITOR_KEY = 'humble-visitor';
+  function loadVisitor() {
+    try { const v = JSON.parse(localStorage.getItem(VISITOR_KEY) || 'null'); return v && typeof v === 'object' ? v : {}; } catch (e) { return {}; }
+  }
+  function saveVisitor(v) { try { localStorage.setItem(VISITOR_KEY, JSON.stringify(v)); } catch (e) {} }
+  function clearVisitor() { try { localStorage.removeItem(VISITOR_KEY); } catch (e) {} }
+  function prefillLead() {
+    const v = loadVisitor();
+    const set = (id, val) => { const el = document.getElementById(id); if (el && val) el.value = val; };
+    set('f-name', v.name); set('f-email', v.email); set('f-phone', v.phone); set('f-company', v.business_name);
+  }
   let state = load() || fresh();
   state.step = -1;
   S.PROFILE.forEach(p => { const v = state.profile[p.id]; if (v !== undefined && !p.options.some(o => o.id === v)) delete state.profile[p.id]; });
@@ -711,6 +729,7 @@ footer { max-width: 720px; margin: 0 auto; font-size: .75rem; color: var(--mid);
   function renderQuestion() {
     const st = steps[state.step], chosen = answerOf(st);
     const label = st.kind === 'profile' ? 'About your business' : areaName[st.q.area];
+    const pct = 100 * (state.step + 1) / steps.length, fromPct = prevPct; prevPct = pct;
     const options = st.q.options.map((o, i) => {
       const selected = chosen === (st.kind === 'profile' ? o.id : i);
       return `<button class="opt${selected ? ' selected' : ''}" aria-pressed="${selected}" data-act="pick" data-i="${i}">
@@ -718,7 +737,7 @@ footer { max-width: 720px; margin: 0 auto; font-size: .75rem; color: var(--mid);
     }).join('');
     app.innerHTML = `
       <section class="question">
-        <div class="progress" aria-hidden="true"><span style="width:${(100 * (state.step + 1) / steps.length).toFixed(1)}%"></span></div>
+        <div class="progress" aria-hidden="true"><span style="--from:${fromPct.toFixed(1)}%;width:${pct.toFixed(1)}%"></span></div>
         <p class="meta" id="qmeta">Question ${state.step + 1} of ${steps.length} · <b>${esc(label)}</b></p>
         <h2 id="qtext" tabindex="-1" data-focus aria-describedby="qmeta">${esc(st.q.text)}</h2>
         <div class="options" role="group" aria-labelledby="qtext">${options}</div>
@@ -841,6 +860,7 @@ footer { max-width: 720px; margin: 0 auto; font-size: .75rem; color: var(--mid);
               <button class="link" type="button" data-act="lead-email">Just email me my results</button>
             </div>
             <p class="notice" role="status" tabindex="-1" hidden></p>
+            <p class="quiet"><button class="link" type="button" data-act="clear-visitor">Clear what this browser remembers</button></p>
           </form>
           <p class="areanote" data-b360>${esc(S.B360_NOTE)}</p>
         </section>
@@ -852,6 +872,7 @@ footer { max-width: 720px; margin: 0 auto; font-size: .75rem; color: var(--mid);
         <p class="disclaimer">${esc(S.LEGAL.disclaimer)}${DAGGER}</p>
         ${''}
       </section>`;
+    prefillLead();
   }
   function setError(field, id, message) {
     const el = document.getElementById(id), input = document.getElementById(field);
@@ -871,6 +892,12 @@ footer { max-width: 720px; margin: 0 auto; font-size: .75rem; color: var(--mid);
       document.getElementById(!okName ? 'f-name' : !okEmail ? 'f-email' : 'f-consent').focus();
       return;
     }
+    saveVisitor({
+      name: name || undefined, email,
+      phone: String(d.get('phone') || '').trim() || undefined,
+      business_name: String(d.get('company') || '').trim() || undefined,
+      industry: state.profile.industry, employees: state.profile.employees, revenue: state.profile.revenue,
+    });
     const r = S.evaluate(state.answers, state.profile);
     const lead = {
       scorecard_version: S.VERSION,
@@ -888,13 +915,40 @@ footer { max-width: 720px; margin: 0 auto; font-size: .75rem; color: var(--mid);
       flags: r.flags.map(x => x.id),
     };
     const n = f.querySelector('.notice');
-    n.textContent = kind === 'call'
-      ? 'This is a review draft, so nothing was sent. On the live site this step would save your request and show open times for your conversation.'
-      : 'This is a review draft, so nothing was sent. On the live site this step would email you a copy of your results.';
-    n.hidden = false;
-    n.focus();
     const record = document.getElementById('leadjson');
     if (record) record.textContent = JSON.stringify(lead, null, 2);
+    const base = S.FORMS_BASE_URL;
+    if (!base) {
+      n.textContent = kind === 'call'
+        ? 'This is a review draft, so nothing was sent. On the live site this step would save your request and show open times for your conversation.'
+        : 'This is a review draft, so nothing was sent. On the live site this step would email you a copy of your results.';
+      n.hidden = false;
+      n.focus();
+      return;
+    }
+    const payload = {
+      email, name: name || undefined,
+      phone: String(d.get('phone') || '').trim() || undefined,
+      business_name: String(d.get('company') || '').trim() || undefined,
+      consent_contact: d.get('consent') === 'on',
+      consent_text: S.LEGAL.consent,
+      letters_opt_in: d.get('letters') === 'on',
+      letters_text: d.get('letters') === 'on' ? S.LEGAL.letters : undefined,
+      profile: state.profile,
+      answers: state.answers,
+      result: { version: S.VERSION, areas: Object.fromEntries(r.areas.map(a => [a.id, a.pct])), overall: r.overall, band: r.band.name, flags: r.flags.map(x => x.id) },
+    };
+    fetch(base + '/api/public/forms/scorecard', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
+    }).then(res => {
+      n.textContent = res.status === 202 ? 'Thank you — your request has been received.' : "Sorry, that couldn't be sent. Please email office@humblebusinessconsulting.com.";
+      n.hidden = false;
+      n.focus();
+    }).catch(() => {
+      n.textContent = "Sorry, that couldn't be sent. Please email office@humblebusinessconsulting.com.";
+      n.hidden = false;
+      n.focus();
+    });
   }
   app.addEventListener('click', e => {
     const b = e.target.closest('[data-act]');
@@ -918,6 +972,13 @@ footer { max-width: 720px; margin: 0 auto; font-size: .75rem; color: var(--mid);
     else if (act === 'print') window.print();
     else if (act === 'lead') sendLead('call');
     else if (act === 'lead-email') sendLead('email');
+    else if (act === 'clear-visitor') {
+      clearVisitor();
+      const f = document.getElementById('lead');
+      if (f) f.reset();
+      const n = app.querySelector('#lead .notice');
+      if (n) { n.textContent = 'Cleared what this browser remembered about you.'; n.hidden = false; n.focus(); }
+    }
   });
   app.addEventListener('submit', e => e.preventDefault());
   document.addEventListener('keydown', e => {
