@@ -65,7 +65,9 @@
       industry: v('industry') || undefined, role_in_business: v('role') || undefined,
       employees: v('employees') || undefined, revenue: v('revenue') || undefined, state: v('state') || undefined,
       topic: v('issue') || undefined, start_when: v('timeline') || undefined,
-      considering_sale: succ ? succ.value : undefined, notes: v('more'),
+      considering_sale: succ ? succ.value : undefined,
+      // 2026-09-27: a time request replaces the calendar; the times ride in notes, so the endpoint contract is unchanged.
+      notes: [v('times') && 'Times that suit me: ' + v('times'), v('more')].filter(Boolean).join('\n\n') || undefined,
       consent_contact: true, consent_text: consentText,
       letters_opt_in: !!lettersChecked, letters_text: lettersChecked ? lettersText : undefined,
     };
@@ -107,7 +109,7 @@
 
     var base = window.HUMBLE_FORMS_BASE_URL;
     if (!base) {
-      notice.textContent = 'This is a review draft, so nothing was sent. On the live site this step would save your request and offer times for your conversation.';
+      notice.textContent = 'This is a review draft, so nothing was sent. On the live site this step would send your request, and we would email you back to confirm a time.';
       notice.hidden = false;
       notice.focus();
       return;

@@ -106,6 +106,12 @@ p { margin: 0 0 1em; }
 .narrow { max-width: 42rem; }
 .lede { font-family: var(--serif); font-style: italic; font-size: 1.3rem; color: var(--char); }
 .eyebrow { font-family: var(--caps); font-size: .8rem; letter-spacing: .14em; color: var(--brand); margin-bottom: .4rem; }
+.crumb { font-size: .9rem; color: var(--mid); margin-bottom: .6rem; }
+.sample-note { border-left: 3px solid var(--brand); background: var(--wash); padding: 12px 16px; border-radius: 0 8px 8px 0; }
+/* Sample Review: the embedded map takes the site's look-E ground instead of its own green one. */
+.sample-band .m360 { --m-ground: var(--paper); --m-surface: var(--paper); --m-wash: var(--wash); --m-line: var(--line); }
+.review-preview { display: block; max-width: 44rem; margin: 1.2rem 0 .6rem; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.review-preview img { display: block; width: 100%; }
 section.band { padding: 44px 0; border-top: 1px solid var(--line); scroll-margin-top: 16px; }
 section.band:first-of-type { border-top: 0; padding-top: 0; }
 
