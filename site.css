@@ -258,23 +258,39 @@ fieldset { border: 0; padding: 0; margin: 0; }
 @media print {
   .review-banner, .site-nav, .nav-toggle, .header-cta, .skip { display: none; }
 }
-/* books-and-hosting.html: one overhead map. Dashed = planned, not built; heavier outline = the client-records wall. */
-.map-figure { margin: 1.2rem 0 0; max-width: 560px; }
-.bh-map { display: block; width: 100%; height: auto; font-family: var(--sans); }
-.bh-zone { fill: var(--wash); stroke: var(--line); stroke-width: 1; }
-.bh-zone.bh-plan { stroke: var(--soft); stroke-dasharray: 6 4; }
-.bh-node { fill: var(--card); stroke: var(--mid); stroke-width: 1.2; }
-.bh-node.bh-new { stroke: var(--brand); stroke-width: 1.6; stroke-dasharray: 6 4; }
-.bh-node.bh-wall { stroke: var(--brand-deep); stroke-width: 3; }
-.bh-t { font-size: 14px; font-weight: 600; fill: var(--ink); text-anchor: middle; }
-.bh-s { font-size: 12px; fill: var(--char); text-anchor: middle; }
-.bh-k { font-size: 12px; font-weight: 600; fill: var(--brand); text-anchor: middle; }
-.bh-z { font-family: var(--caps); font-size: 10.5px; letter-spacing: .04em; fill: var(--mid); text-transform: uppercase; }
-.bh-line { fill: none; stroke: var(--mid); stroke-width: 1.4; }
-.bh-arrowhead { fill: var(--mid); }
-.bh-rule { stroke: var(--line); stroke-width: 1; }
-.map-key { font-size: .92rem; color: var(--mid); margin-top: .6rem; }
-.key-solid { border-bottom: 2px solid var(--mid); }
-.key-dash { border-bottom: 2px dashed var(--brand); }
-.bh-zr { text-anchor: end; }
-.bh-grow { stroke-dasharray: 4 4; }
+/* books-and-hosting.html: one big overhead map in plain HTML (no SVG), so the words stay large on any screen.
+   Top to bottom: people -> private network -> the Mac mini (sign-in, platform, AI, data) -> back-ups. Bluehost sits beside.
+   Each box carries a status chip in words: "Works in test" or "Not built yet". */
+.mm-map { margin: 1.4rem 0 0; display: grid; gap: 0; max-width: 60rem; font-size: 1.08rem; }
+.mm-row { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.mm-box { background: var(--card); border: 2px solid var(--mid); border-radius: 12px; padding: 16px 18px; }
+.mm-box h3 { font-family: var(--sans); font-weight: 600; font-size: 1.2rem; color: var(--ink); margin: 0 0 .3em; }
+.mm-box p { margin: 0; color: var(--char); }
+.mm-box.mm-todo { border-style: dashed; }
+.mm-box.mm-wall { border-width: 4px; border-color: var(--brand-deep); }
+.mm-chip { display: inline-block; margin-top: .6em; font-size: .85rem; font-weight: 600; padding: 2px 10px; border-radius: 99px; background: var(--wash); color: var(--brand-deep); border: 1px solid var(--line); }
+.mm-todo .mm-chip { color: var(--alert); }
+.mm-down { height: 34px; position: relative; }
+.mm-down::before { content: ""; position: absolute; left: 50%; top: 4px; bottom: 10px; border-left: 3px solid var(--mid); }
+.mm-down::after { content: ""; position: absolute; left: calc(50% - 8px); bottom: 2px; border: 8px solid transparent; border-top: 10px solid var(--mid); border-bottom: 0; }
+.mm-band { border: 3px solid var(--brand); border-radius: 14px; padding: 14px 18px; background: var(--wash); }
+.mm-band > h3 { font-family: var(--caps); font-weight: 500; font-size: 1.05rem; letter-spacing: .04em; color: var(--brand-deep); margin: 0 0 .4em; }
+.mm-band > p { margin: 0 0 .8em; color: var(--char); }
+.mm-mini { background: var(--brand-deep); border-color: var(--brand-deep); color: var(--on-ink); }
+.mm-mini > h3, .mm-mini > p { color: var(--on-ink); }
+.mm-mini .mm-box { border-color: var(--paper); }
+.mm-inner { display: grid; gap: 0; }
+.mm-mini .mm-down::before { border-left-color: var(--on-ink); }
+.mm-mini .mm-down::after { border-top-color: var(--on-ink); }
+.mm-side { margin-top: 18px; }
+.mm-legend { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 1rem; color: var(--mid); font-size: .98rem; }
+.mm-legend span::before { content: ""; display: inline-block; width: 2.2rem; height: 1rem; margin-right: .45rem; vertical-align: -3px; border: 2px solid var(--mid); border-radius: 4px; }
+.mm-legend .l-todo::before { border-style: dashed; }
+.mm-legend .l-wall::before { border: 4px solid var(--brand-deep); }
+.big-steps { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 12px; max-width: 48rem; counter-reset: bs; }
+.big-steps li { counter-increment: bs; display: grid; grid-template-columns: 2.6rem 1fr; gap: 4px 14px; align-items: start; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+.big-steps li::before { content: counter(bs); grid-row: span 2; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--brand); color: var(--on-ink); display: grid; place-items: center; font-weight: 600; }
+.big-steps b { font-size: 1.12rem; }
+.big-steps span { color: var(--char); }
+.big-steps li.bs-next { border: 2px solid var(--brand); }
+.big-steps em.mm-chip { font-style: normal; margin: 0 0 0 .5em; vertical-align: 2px; }
