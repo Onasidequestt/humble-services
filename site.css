@@ -258,3 +258,23 @@ fieldset { border: 0; padding: 0; margin: 0; }
 @media print {
   .review-banner, .site-nav, .nav-toggle, .header-cta, .skip { display: none; }
 }
+/* books-and-hosting.html: one overhead map. Dashed = planned, not built; heavier outline = the client-records wall. */
+.map-figure { margin: 1.2rem 0 0; max-width: 560px; }
+.bh-map { display: block; width: 100%; height: auto; font-family: var(--sans); }
+.bh-zone { fill: var(--wash); stroke: var(--line); stroke-width: 1; }
+.bh-zone.bh-plan { stroke: var(--soft); stroke-dasharray: 6 4; }
+.bh-node { fill: var(--card); stroke: var(--mid); stroke-width: 1.2; }
+.bh-node.bh-new { stroke: var(--brand); stroke-width: 1.6; stroke-dasharray: 6 4; }
+.bh-node.bh-wall { stroke: var(--brand-deep); stroke-width: 3; }
+.bh-t { font-size: 14px; font-weight: 600; fill: var(--ink); text-anchor: middle; }
+.bh-s { font-size: 12px; fill: var(--char); text-anchor: middle; }
+.bh-k { font-size: 12px; font-weight: 600; fill: var(--brand); text-anchor: middle; }
+.bh-z { font-family: var(--caps); font-size: 10.5px; letter-spacing: .04em; fill: var(--mid); text-transform: uppercase; }
+.bh-line { fill: none; stroke: var(--mid); stroke-width: 1.4; }
+.bh-arrowhead { fill: var(--mid); }
+.bh-rule { stroke: var(--line); stroke-width: 1; }
+.map-key { font-size: .92rem; color: var(--mid); margin-top: .6rem; }
+.key-solid { border-bottom: 2px solid var(--mid); }
+.key-dash { border-bottom: 2px dashed var(--brand); }
+.bh-zr { text-anchor: end; }
+.bh-grow { stroke-dasharray: 4 4; }

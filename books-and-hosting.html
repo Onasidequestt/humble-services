@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bookkeeping and Hosting Map | Humble Services Business Consulting</title>
+<meta name="description" content="A proposal for Humble Services: how your CPA, CFO and accountants would log in to the books, and where the whole platform should be hosted as the company grows.">
+<meta property="og:title" content="Bookkeeping and Hosting Map | Humble Services Business Consulting">
+<meta property="og:description" content="A proposal for Humble Services: how your CPA, CFO and accountants would log in to the books, and where the whole platform should be hosted as the company grows.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;1,8..60,500&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="review-banner" role="note">Review draft for Humble Services, not live yet.</div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><img src="assets/logo.png" alt="" width="44" height="55"><span class="wordmark">Humble Services<small>Business Consulting</small></span></a>
+    <details class="nav-menu" id="nav-menu">
+      <summary class="nav-toggle">Menu</summary>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="business-360.html">Vantage Point Review</a></li>
+          <li><a href="exit-succession.html">Exit Planning</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="ai-implementation.html">AI Implementation</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </details>
+    <a class="header-cta" href="contact.html">Book a Consultation</a>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+<h1>Bookkeeping and Hosting Map</h1>
+<p class="lede narrow">How your CPA, CFO and accountants would log in to the books, and where the whole platform should live as Humble Services grows.</p>
+<p class="narrow">This is a proposal for you to check. We build it once you are happy with it. The sign-in rules, the platform and the wall around client records already work in our test version. The bookkeeping, the back-ups and the hosts are not set up yet.</p>
+
+<section class="band" aria-labelledby="map-h">
+  <h2 id="map-h">The map</h2>
+  <p class="narrow">Read it from the top down: the people, the web address they type, the sign-in, the platform, and the data. Each shaded area is where we recommend that part lives.</p>
+  <figure class="map-figure">
+    <svg class="bh-map" viewBox="0 0 400 724" role="img" aria-labelledby="map-title map-desc">
+      <title id="map-title">Bookkeeping and hosting map</title>
+      <desc id="map-desc">Three groups of people: the books team (your CPA, CFO and accountants), you and your staff, and client owners. All of them use your web address, humblebusinessconsulting.com, which stays at Bluehost with the public website and email. Its app address points to the platform, which runs at Render: first a sign-in where each person has their own login, then the platform itself. The data is kept at Supabase in two parts: the books, open to you and to your CPA, CFO and accountants; and client records, open to you only. Below that, a nightly locked copy that is test-restored, and downloads for back-up as a spreadsheet or a QuickBooks file. If the company ever outgrows Render and Supabase, a complete copy moves to a larger cloud such as Amazon's. Dashed outlines are planned and not built yet. The five steps of the move are listed below the map.</desc>
+      <defs>
+        <marker id="bh-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="bh-arrowhead"/></marker>
+      </defs>
+
+      <!-- people -->
+      <rect class="bh-node bh-new" x="8" y="8" width="120" height="58" rx="8"/>
+      <text class="bh-t" x="68" y="30">Books team</text>
+      <text class="bh-s" x="68" y="46">your CPA, CFO,</text>
+      <text class="bh-s" x="68" y="60">accountants</text>
+      <rect class="bh-node" x="140" y="8" width="120" height="58" rx="8"/>
+      <text class="bh-t" x="200" y="30">You</text>
+      <text class="bh-s" x="200" y="46">and your staff</text>
+      <rect class="bh-node" x="272" y="8" width="120" height="58" rx="8"/>
+      <text class="bh-t" x="332" y="30">Client owners</text>
+      <text class="bh-s" x="332" y="46">their own</text>
+      <text class="bh-s" x="332" y="60">company only</text>
+      <path class="bh-line" d="M68 66 L200 82 M332 66 L200 82 M200 66 L200 104" marker-end="url(#bh-arrow)"/>
+
+      <!-- Bluehost -->
+      <rect class="bh-zone" x="4" y="86" width="392" height="100" rx="12"/>
+      <text class="bh-z" x="16" y="101">Bluehost</text><text class="bh-z bh-zr" x="384" y="101">you have it now</text>
+      <rect class="bh-node" x="20" y="108" width="360" height="66" rx="8"/>
+      <text class="bh-t" x="200" y="128">humblebusinessconsulting.com</text>
+      <text class="bh-s" x="200" y="146">Public website and email, once set up, stay here.</text>
+      <text class="bh-s" x="200" y="163">Its "app." address points to the platform below.</text>
+      <path class="bh-line" d="M200 174 L200 226" marker-end="url(#bh-arrow)"/>
+
+      <!-- Render -->
+      <rect class="bh-zone bh-plan" x="4" y="204" width="392" height="156" rx="12"/>
+      <text class="bh-z" x="16" y="219">Render</text><text class="bh-z bh-zr" x="384" y="219">always on · SOC 2 audited</text>
+      <rect class="bh-node" x="40" y="230" width="320" height="56" rx="8"/>
+      <text class="bh-t" x="200" y="250">Sign-in</text>
+      <text class="bh-s" x="200" y="268">A login for each person, by invitation only,</text>
+      <text class="bh-s" x="200" y="282">plus a code from a phone app</text>
+      <path class="bh-line" d="M200 286 L200 298" marker-end="url(#bh-arrow)"/>
+      <rect class="bh-node" x="40" y="300" width="320" height="48" rx="8"/>
+      <text class="bh-t" x="200" y="320">The platform</text>
+      <text class="bh-s" x="200" y="338">Dashboard · onboarding · pipeline · AI tools</text>
+      <path class="bh-line" d="M200 348 L200 398 L100 398 L100 412 M200 398 L300 398 L300 412" marker-end="url(#bh-arrow)"/>
+
+      <!-- Supabase -->
+      <rect class="bh-zone bh-plan" x="4" y="376" width="392" height="160" rx="12"/>
+      <text class="bh-z" x="16" y="391">Supabase</text><text class="bh-z bh-zr" x="384" y="391">standard database · SOC 2</text>
+      <rect class="bh-node bh-new" x="14" y="414" width="172" height="110" rx="8"/>
+      <text class="bh-t" x="100" y="434">The books</text>
+      <text class="bh-s" x="100" y="452">Ledger · invoices</text>
+      <text class="bh-s" x="100" y="467">payments · reports</text>
+      <line class="bh-rule" x1="30" y1="479" x2="170" y2="479"/>
+      <text class="bh-k" x="100" y="496">Open to: you, your</text>
+      <text class="bh-k" x="100" y="512">CPA, CFO, accountants</text>
+      <rect class="bh-node bh-wall" x="214" y="414" width="172" height="110" rx="8"/>
+      <text class="bh-t" x="300" y="434">Client records</text>
+      <text class="bh-s" x="300" y="452">Business files</text>
+      <text class="bh-s" x="300" y="467">call notes</text>
+      <line class="bh-rule" x1="230" y1="479" x2="370" y2="479"/>
+      <text class="bh-k" x="300" y="496">Open to: you only</text>
+      <text class="bh-s" x="300" y="512">not the books team</text>
+      <path class="bh-line" d="M200 536 L200 552 L100 552 L100 566 M200 552 L300 552 L300 566" marker-end="url(#bh-arrow)"/>
+
+      <!-- back-ups -->
+      <rect class="bh-node bh-new" x="14" y="568" width="172" height="62" rx="8"/>
+      <text class="bh-t" x="100" y="590">Nightly locked copy</text>
+      <text class="bh-s" x="100" y="608">kept apart, and</text>
+      <text class="bh-s" x="100" y="622">test-restored</text>
+      <rect class="bh-node bh-new" x="214" y="568" width="172" height="62" rx="8"/>
+      <text class="bh-t" x="300" y="590">Download for back-up</text>
+      <text class="bh-s" x="300" y="608">spreadsheet, or a</text>
+      <text class="bh-s" x="300" y="622">file QuickBooks reads</text>
+      <path class="bh-line bh-grow" d="M200 536 L200 552 M200 560 L200 650" marker-end="url(#bh-arrow)"/>
+      <rect class="bh-node bh-new" x="60" y="652" width="280" height="64" rx="8"/>
+      <text class="bh-t" x="200" y="673">If Humble outgrows this</text>
+      <text class="bh-s" x="200" y="691">a complete copy moves to a larger cloud,</text>
+      <text class="bh-s" x="200" y="705">such as Amazon's, planned well ahead</text>
+    </svg>
+    <figcaption class="map-key"><span class="key-solid">Solid outline</span> works in our test version. <span class="key-dash">Dashed outline</span> is planned, not built yet. The wall around client records has a heavier outline.</figcaption>
+  </figure>
+</section>
+
+<section class="band" aria-labelledby="books-h">
+  <h2 id="books-h">Bookkeeping: each person works inside the platform</h2>
+  <p class="narrow">Your CPA, CFO and accountants each get their own secure login and do their work in the platform itself. Downloads stay available for back-up. Here is how we suggest the work splits; tell us if your team divides it differently.</p>
+  <div class="grid">
+    <div class="card"><h3>CFO</h3><p>Sees all of the books and every report. Signs off each month once it is complete.</p></div>
+    <div class="card"><h3>Your CPA</h3><p>Sees the books, makes year-end and tax adjustments, and locks a month once it is closed.</p></div>
+    <div class="card"><h3>Accountants</h3><p>The day-to-day work: record entries, match payments to invoices, and send invoices.</p></div>
+  </div>
+  <ul class="narrow">
+    <li>Every change carries the name of the person who made it, and when.</li>
+    <li>Nothing is erased. A mistake is fixed with a correcting entry, so the history stays whole.</li>
+    <li>A locked month cannot be changed.</li>
+    <li>You invite each person, and you can remove anyone's login at any time.</li>
+    <li>The books team sees the money side only. Your clients' business files and call notes stay open to you only.</li>
+  </ul>
+</section>
+
+<section class="band" aria-labelledby="host-h">
+  <h2 id="host-h">Our hosting recommendation</h2>
+  <p class="narrow">Keep Bluehost for what it does well, and put the platform with two services built for this kind of work. Both are independently audited for security (SOC 2 Type 2). Supabase shares its audit report on its Team plan, which we suggest once real client data goes in.</p>
+  <div class="grid">
+    <div class="card"><h3>Bluehost: your address and website</h3><p>Keeps humblebusinessconsulting.com, the public website, your other websites and, once set up, your email. Nothing you have there changes.</p></div>
+    <div class="card"><h3>Render: runs the platform</h3><p>Keeps the platform running day and night, including the sign-in and the AI tools. It can grow to bigger machines as the company grows.</p></div>
+    <div class="card"><h3>Supabase: keeps the data</h3><p>The platform's data is stored in PostgreSQL, a standard database that very large companies use. We wrote its access rules to work on Supabase from the start, and the logins live in the same database, in their own separate area.</p></div>
+  </div>
+  <h3 class="narrow">Why not run the platform on Bluehost?</h3>
+  <p class="narrow">Bluehost's shared plans can't keep a program like the platform running all the time. Its larger private servers can, but then Humble Services would be running its own server: security updates, back-ups and outages would all be yours. For your clients' financial records, we would rather leave that to services whose whole job it is.</p>
+  <h3 class="narrow">If Humble Services grows very large</h3>
+  <p class="narrow">Render and Supabase both grow by plan: bigger machines, and extra read-only copies of the database for heavy use. If the company ever outgrows them, the data is standard PostgreSQL, so a complete copy, logins included, can move to a very large cloud such as Amazon's. That later step would take some rework, which we would plan well ahead. Your data is never locked in.</p>
+</section>
+
+<section class="band" aria-labelledby="move-h">
+  <h2 id="move-h">How the move works</h2>
+  <p class="narrow">Nothing real has to be moved: no client data goes into the platform until it runs on the new hosts. So the move is a fresh set-up, checked before anyone uses it.</p>
+  <ol class="steps">
+    <li><b>Finish here</b><span>Every launch check passes on our test version, using test data only.</span></li>
+    <li><b>You open the accounts</b><span>Render and Supabase, in the name of Humble Services, Inc. You own them and invite us in.</span></li>
+    <li><b>Set up and re-check</b><span>We set the platform up there and run every launch check again, on the new hosts.</span></li>
+    <li><b>Point the address</b><span>One address setting sends the app address to the platform. The website and email stay as they are.</span></li>
+    <li><b>Invite your team</b><span>You first, then your CPA, CFO and accountants. Real client data goes in only after that.</span></li>
+  </ol>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="inner">
+    <div>
+      <p><b>Humble Services Business Consulting</b><br>A d/b/a of Humble Services, Inc., a Wyoming corporation. Available to owners across the United States.</p>
+      <p>30 N Gould St., Ste R, Sheridan, WY 82801<br>office@humblebusinessconsulting.com<br>humblebusinessconsulting.com</p>
+      <div class="placeholder" data-placeholder="public-contact"><p class="ph-label">Placeholder — Clark to supply: public phone number.</p></div>
+    </div>
+    <ul aria-label="More">
+      <li><a href="scorecard/index.html">Take the Business Independence Scorecard</a></li>
+      <li><a href="contact.html">Book a Consultation</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms of Use</a></li>
+      <li><a href="login.html">Client login</a></li>
+    </ul>
+    <p class="disclaimer">Humble Services provides business advisory and decision support. It does not provide legal, tax, securities or investment advice, formal valuations, or psychotherapy, and it does not promise any sale price, valuation or financial result.</p>
+  </div>
+</footer>
+</body>
+</html>
