@@ -34,6 +34,12 @@
   --serif: "Source Serif 4", "Iowan Old Style", Palatino, Georgia, serif;
   --sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   --caps: Cinzel, "Trajan Pro", "Iowan Old Style", Georgia, serif; /* echoes the crest's wordmark */
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace; /* system-demo.html: figures and IDs only */
+  /* Status grounds for the system demo. Green, amber and red keep their meanings: works, waiting / not built, problem. */
+  --ok-wash: #e8f1ea;
+  --warn: #7a4600;
+  --warn-wash: #fbf0dc;
+  --alert-wash: #f9e5e2;
   color-scheme: light;
 }
 /* ===== END BRAND TOKENS ===== */
@@ -294,3 +300,134 @@ fieldset { border: 0; padding: 0; margin: 0; }
 .big-steps span { color: var(--char); }
 .big-steps li.bs-next { border: 2px solid var(--brand); }
 .big-steps em.mm-chip { font-style: normal; margin: 0 0 0 .5em; vertical-align: 2px; }
+/* system-demo.html: a clickable demo of Clark's system, SAMPLE data only. The layout follows our dashboard deck:
+   pill nav, stat tiles with a coloured left edge, a right-hand inspector, status badges and corner brackets, dressed in
+   this site's tokens. Green = works in our test version, amber = waiting or not built yet, red = a problem. The heavy
+   dark border is the wall around client records, as on the map. No motion: every change is instant. */
+.dm-app { margin-top: 1.4rem; background: var(--wash); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+.dm-frame { position: relative; background-color: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px;
+  background-image: linear-gradient(var(--brand), var(--brand)), linear-gradient(var(--brand), var(--brand)), linear-gradient(var(--brand), var(--brand)), linear-gradient(var(--brand), var(--brand)),
+    linear-gradient(var(--brand), var(--brand)), linear-gradient(var(--brand), var(--brand)), linear-gradient(var(--brand), var(--brand)), linear-gradient(var(--brand), var(--brand));
+  background-repeat: no-repeat;
+  background-size: 14px 2px, 2px 14px, 14px 2px, 2px 14px, 14px 2px, 2px 14px, 14px 2px, 2px 14px;
+  background-position: 0 0, 0 0, 100% 0, 100% 0, 0 100%, 0 100%, 100% 100%, 100% 100%; }
+.dm-frame + .dm-frame, .dm-body > div > * + * { margin-top: 14px; }
+.dm-hd { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: -12px -14px 12px; padding: 9px 16px 8px; background: var(--wash); border-bottom: 1px solid var(--line);
+  font-family: var(--caps); font-weight: 500; font-size: .84rem; letter-spacing: .06em; color: var(--char); }
+.dm-hd .dm-badge { margin-left: auto; font-family: var(--sans); letter-spacing: 0; font-size: .72rem; padding: 0 8px; }
+.dm-gloss { font-size: .9rem; color: var(--mid); margin: -4px 0 8px; }
+.dm-sample { display: inline-block; margin: 0 0 .8rem; padding: 3px 12px; border: 2px solid var(--ink); border-radius: 4px; background: var(--paper); color: var(--ink);
+  font-family: var(--caps); font-weight: 500; font-size: .8rem; letter-spacing: .12em; }
+.dm-headline { font-family: var(--serif); font-size: 1.25rem; line-height: 1.35; color: var(--ink); margin: 0 0 1rem; max-width: 46rem; }
+.dm-note { border-left: 3px solid var(--warn); background: var(--warn-wash); color: var(--ink); padding: 10px 14px; border-radius: 0 8px 8px 0; margin: 0 0 1rem; max-width: 50rem; }
+/* The front door: who is opening the demo. */
+.dm-door { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 12px; margin-top: .6rem; }
+.dm-person { display: grid; gap: 4px; text-align: left; cursor: pointer; background: var(--card); color: var(--ink); border: 1px solid var(--line); border-left: 4px solid var(--brand); border-radius: 6px; padding: 14px 16px; }
+.dm-person b { font-family: var(--serif); font-weight: 600; font-size: 1.15rem; color: var(--char); }
+.dm-person span { font-size: .92rem; color: var(--mid); }
+.dm-person:hover { background: var(--ok-wash); }
+/* The top strip: who you are, the pill nav, and a way back to the door. */
+.dm-strip { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-bottom: 14px; }
+.dm-who { font-size: .92rem; color: var(--char); }
+.dm-who b { color: var(--ink); }
+.dm-pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.dm-pill, .dm-btn { cursor: pointer; border: 1px solid var(--line); border-radius: 999px; padding: 6px 15px; background: var(--card); color: var(--char); font-size: .9rem; font-weight: 600; }
+.dm-pill:hover, .dm-btn:hover { border-color: var(--brand); color: var(--brand-deep); }
+.dm-pill[aria-current="page"] { border: 2px solid var(--brand); color: var(--brand-deep); background: var(--ok-wash); padding: 5px 14px; }
+.dm-btn { border-radius: 6px; border-color: var(--soft); font-weight: 600; }
+.dm-btn.go { background: var(--brand); border-color: var(--brand-deep); color: var(--on-ink); }
+.dm-btn.go:hover { background: var(--brand-deep); color: var(--on-ink); }
+.dm-btn[disabled] { cursor: not-allowed; color: var(--mid); background: var(--wash); border-style: dashed; }
+.dm-change { margin-left: auto; }
+/* Stat tiles with a coloured left edge. */
+.dm-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr)); gap: 10px; margin: 0 0 14px; }
+.dm-tile { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--mid); border-radius: 4px; padding: 10px 12px; }
+.dm-tile.ok { border-left-color: var(--brand); }
+.dm-tile.warn { border-left-color: var(--warn); }
+.dm-tile.bad { border-left-color: var(--alert); }
+.dm-tile .v { display: block; font-family: var(--mono); font-size: 1.6rem; font-weight: 600; line-height: 1.2; color: var(--ink); }
+.dm-tile .v.words { font-family: var(--sans); font-size: 1.05rem; padding: 3px 0 2px; }
+.dm-tile .k { display: block; font-family: var(--caps); font-size: .8rem; letter-spacing: .06em; color: var(--ink); margin-top: 3px; }
+/* Status badges: always a word, never a colour alone. */
+.dm-badge { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; font-size: .78rem; font-weight: 600; padding: 1px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--wash); color: var(--char); }
+.dm-badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex: none; }
+.dm-badge.ok { color: var(--brand-deep); background: var(--ok-wash); border-color: var(--brand); }
+.dm-badge.todo { color: var(--warn); background: var(--warn-wash); border: 1px dashed var(--warn); }
+.dm-badge.warn { color: var(--warn); background: var(--warn-wash); border-color: var(--warn); }
+.dm-badge.bad { color: var(--alert); background: var(--alert-wash); border-color: var(--alert); }
+.dm-badge.lock { color: var(--on-ink); background: var(--brand-deep); border-color: var(--brand-deep); }
+.dm-badge.key { color: var(--ink); background: var(--paper); border-color: var(--ink); }
+.dm-legend { display: flex; flex-wrap: wrap; gap: 8px 14px; margin: 0 0 14px; font-size: .86rem; color: var(--char); }
+/* Main column plus the inspector on the right; the inspector drops below on narrow screens. */
+.dm-body { display: grid; grid-template-columns: minmax(0, 1fr) 19rem; gap: 14px; align-items: start; }
+.dm-insp { position: sticky; top: 12px; }
+.dm-insp-empty { color: var(--mid); margin: 0; }
+.dm-detail > :last-child { margin-bottom: 0; }
+.dm-detail .dm-badge { margin: .15rem 0; }
+.dm-back { margin: 0 0 .8rem; }
+.dm-detail h4 { font-family: var(--serif); font-weight: 600; font-size: 1.1rem; color: var(--char); margin: 0 0 .4em; }
+.dm-kv { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; margin: 0 0 .8rem; font-size: .92rem; }
+.dm-kv dt { color: var(--mid); }
+.dm-kv dd { margin: 0; color: var(--ink); }
+.dm-acts { display: flex; flex-wrap: wrap; gap: 8px; margin: .6rem 0 0; }
+.dm-say { min-height: 1.4em; margin: .6rem 0 0; font-size: .9rem; color: var(--brand-deep); }
+/* Rows: a whole row is one button that fills the inspector. */
+.dm-list { list-style: none; margin: 0; padding: 0; }
+.dm-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 4px 12px; width: 100%; text-align: left; cursor: pointer;
+  background: transparent; color: var(--ink); border: 0; border-bottom: 1px solid var(--line); border-left: 3px solid transparent; padding: 10px 8px; }
+.dm-list li:last-child .dm-row { border-bottom: 0; }
+.dm-row:hover { background: var(--wash); }
+.dm-row[aria-pressed="true"] { background: var(--ok-wash); border-left-color: var(--brand); }
+.dm-row b { display: block; font-weight: 600; }
+.dm-row small { display: block; font-size: .86rem; color: var(--mid); }
+.dm-row .dm-badge { justify-self: start; }
+.dm-row.stack { grid-template-columns: minmax(0, 1fr); }
+.dm-app + section.band { padding-top: 44px; }
+.dm-table .dm-badge { font-size: .74rem; }
+.dm-fig { font-family: var(--mono); font-size: .9rem; }
+/* Pipeline: one button per stage, with its count. */
+.dm-stages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.dm-stage { display: grid; gap: 2px; text-align: left; cursor: pointer; background: var(--card); color: var(--ink); border: 1px solid var(--line); border-top: 3px solid var(--brand); border-radius: 4px; padding: 8px 10px; }
+.dm-stage.lost { border-top-color: var(--mid); }
+.dm-stage:hover { background: var(--wash); }
+.dm-stage[aria-pressed="true"] { background: var(--ok-wash); border-color: var(--brand); }
+.dm-stage span { font-size: .86rem; color: var(--char); }
+.dm-stage b { font-family: var(--mono); font-size: 1.2rem; }
+.dm-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 14px; }
+.dm-two > .dm-frame + .dm-frame { margin-top: 0; }
+.dm-two > .dm-wide { grid-column: 1 / -1; }
+.dm-table td:last-child { white-space: nowrap; }
+.dm-table th { white-space: nowrap; }
+.dm-detail .dm-table + p { margin-top: .8rem; }
+/* Disk meter. */
+.dm-meter { height: 14px; border-radius: 7px; background: var(--wash); border: 1px solid var(--soft); overflow: hidden; margin: .3rem 0 .5rem; }
+.dm-meter span { display: block; height: 100%; background: var(--brand); }
+/* The wall around client records, drawn the same way as on the map. */
+.dm-wall { border: 4px solid var(--brand-deep); }
+table.dm-table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+.dm-table th, .dm-table td { text-align: left; padding: 7px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.dm-table th { font-weight: 600; color: var(--char); font-size: .84rem; }
+.dm-table td.n, .dm-table th.n { text-align: right; font-family: var(--mono); white-space: nowrap; }
+.dm-scroll { overflow-x: auto; }
+.dm-screen > h2 { margin: .2rem 0 .6rem; }
+.dm-screen > h2:focus { outline: none; } /* focus moves here after a screen change (tabindex -1, never a Tab stop), so the reader hears it without a box around the title */
+@media (max-width: 900px) {
+  .dm-body { grid-template-columns: minmax(0, 1fr); }
+  .dm-insp { position: static; scroll-margin-top: 130px; }
+  /* the screen switcher stays in reach on long phone pages */
+  .dm-strip { position: sticky; top: 0; z-index: 6; background: var(--wash); margin: -16px -16px 14px; padding: 10px 16px; border-bottom: 1px solid var(--line); }
+}
+@media (max-width: 560px) {
+  .dm-app { padding: 10px; margin-left: -10px; margin-right: -10px; border-radius: 10px; }
+  .dm-frame { padding: 12px; }
+  .dm-hd { margin: -10px -10px 10px; padding: 8px 10px; }
+  .dm-strip nav { order: 3; flex-basis: 100%; }
+  .dm-strip { margin: -10px -10px 14px; padding: 10px; } /* matches .dm-app's 10px padding here */
+  .dm-pills { flex-wrap: nowrap; overflow-x: auto; }
+  .dm-pill { white-space: nowrap; padding: 6px 12px; }
+  .dm-headline { font-size: 1.18rem; }
+  .dm-row { grid-template-columns: minmax(0, 1fr); }
+  .dm-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dm-tile:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .dm-pill, .dm-btn, .dm-stage { min-height: 44px; }
+}

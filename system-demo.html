@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your System: A Clickable Demo | Humble Services Business Consulting</title>
+<meta name="description" content="A clickable demo with made-up sample data: your home dashboard, the Mac mini at your office, every file it holds, and what your books team sees.">
+<meta property="og:title" content="Your System: A Clickable Demo | Humble Services Business Consulting">
+<meta property="og:description" content="A clickable demo with made-up sample data: your home dashboard, the Mac mini at your office, every file it holds, and what your books team sees.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=IBM+Plex+Mono:wght@400;600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;1,8..60,500&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="review-banner" role="note">Review draft for Humble Services, not live yet.</div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><img src="assets/logo.png" alt="" width="44" height="55"><span class="wordmark">Humble Services<small>Business Consulting</small></span></a>
+    <details class="nav-menu" id="nav-menu">
+      <summary class="nav-toggle">Menu</summary>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="business-360.html">Vantage Point Review</a></li>
+          <li><a href="exit-succession.html">Exit Planning</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="ai-implementation.html">AI Implementation</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </details>
+    <a class="header-cta" href="contact.html">Book a Consultation</a>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+<h1>Your system: a clickable demo</h1>
+<p class="lede narrow">Click around the way you would on a normal day. Every name and number here is made up.</p>
+<p class="narrow">It goes with your <a href="books-and-hosting.html">Mac mini map</a>. Nothing you click changes anything.</p>
+
+<div class="dm-app" id="dm-app">
+
+<section class="dm-screen" id="dm-door" aria-labelledby="door-h">
+  <p class="dm-sample">Sample · made-up data</p>
+  <h2 id="door-h">Choose who you are</h2>
+  <p class="narrow">In our test version you open the system with your password and a code from an app on your phone; your books team would open it the same way once the books are built. Here you just pick who you are. Inside, tap any line to see its details.</p>
+  <p class="narrow">Our test version is the working copy of your platform we have built so far. It runs on made-up data and is not open to clients yet.</p>
+  <p class="dm-legend"><span class="dm-badge ok">Works in our test version</span> you can try it in our test version today <span class="dm-badge todo">Not built yet</span> the design we propose</p>
+  <div class="dm-door">
+    <button type="button" class="dm-person" data-person="owner"><b>You, the owner</b><span>Open the demo as you: your dashboard, the Mac mini, every file, and the books.</span></button>
+    <button type="button" class="dm-person" data-person="cfo"><b>Your CFO</b><span>Open the demo as your CFO: all of the books and every report, and the monthly sign&#8209;off.</span></button>
+    <button type="button" class="dm-person" data-person="cpa"><b>Your CPA</b><span>Open the demo as your CPA: adjustments, and locking a month once it is closed.</span></button>
+    <button type="button" class="dm-person" data-person="acct"><b>An accountant</b><span>Open the demo as an accountant: the day-to-day entries, invoices and payments.</span></button>
+  </div>
+</section>
+
+<div class="dm-shell" id="dm-shell">
+<div class="dm-strip">
+  <p class="dm-who" id="dm-who">Open as: <b>everyone</b> (switch scripts on to click through)</p>
+  <nav aria-label="Demo screens">
+    <ul class="dm-pills">
+      <li><button type="button" class="dm-pill" data-screen="home" data-for="owner">Home</button></li>
+      <li><button type="button" class="dm-pill" data-screen="mini" data-for="owner">Mac mini</button></li>
+      <li><button type="button" class="dm-pill" data-screen="vault" data-for="owner">File vault</button></li>
+      <li><button type="button" class="dm-pill" data-screen="books" data-for="owner cfo cpa acct">Books</button></li>
+    </ul>
+  </nav>
+  <button type="button" class="dm-btn dm-change" id="dm-change">Choose someone else</button>
+</div>
+
+<!-- ===================== HOME ===================== -->
+<section class="dm-screen" id="dm-home" data-screen="home" aria-labelledby="home-h">
+  <p class="dm-sample">Sample · made-up data</p>
+  <h2 id="home-h">Your home dashboard</h2>
+  <p class="dm-headline">Good morning. Three things wait for your okay, and your next call is at 10:00.</p>
+  <p class="narrow">This is your dashboard from our test version, redrawn: the weekly numbers, the pipeline, upcoming calls and follow-ups are there today. The two panels marked <b>New panel</b> are not built yet; each line in them is marked works or not built. Invoices work in our test version today; the plan moves them into the books.</p>
+  <p class="dm-legend"><span class="dm-badge ok">Works in our test version</span><span class="dm-badge todo">Not built yet</span></p>
+  <div class="dm-tiles">
+    <div class="dm-tile ok"><span class="v">2</span><span class="k">Qualified leads this week</span></div>
+    <div class="dm-tile ok"><span class="v">1</span><span class="k">Discovery call held this week</span></div>
+    <div class="dm-tile ok"><span class="v">1</span><span class="k">Clients signed this week</span></div>
+    <div class="dm-tile warn" data-count="#dm-home [data-show^=&quot;d-ap-&quot;]"><span class="v">3</span><span class="k">Waiting for your okay</span></div>
+    <div class="dm-tile"><span class="v words">Left out of this sample</span><span class="k">Average contract</span></div>
+    <div class="dm-tile"><span class="v words">Not tracked yet</span><span class="k">Fulfillment hours</span></div>
+  </div>
+  <div class="dm-body">
+    <div>
+      <div class="dm-frame">
+        <h3 class="dm-hd">Waiting for your okay <span class="dm-badge todo">New panel</span></h3>
+        <p class="dm-gloss">The panel is new. Call notes already work in our test version; the briefs need the AI helper, which is not built yet.</p>
+        <ul class="dm-list">
+          <li><button type="button" class="dm-row" data-show="d-ap-1" aria-pressed="false"><span><b>Call notes · Harbor Point Plumbing</b><small>From the call transcript you pasted in</small></span><span class="dm-badge ok">Works in our test version</span></button></li>
+          <li><button type="button" class="dm-row" data-show="d-ap-2" aria-pressed="false"><span><b>Pre-call brief · Blue Mesa Heating</b><small>Drafted by the AI helper on the mini</small></span><span class="dm-badge todo">Not built yet</span></button></li>
+          <li><button type="button" class="dm-row" data-show="d-ap-3" aria-pressed="false"><span><b>Pre-call brief · Cedar Hollow Bakery</b><small>Drafted by the AI helper, for Monday's call</small></span><span class="dm-badge todo">Not built yet</span></button></li>
+        </ul>
+      </div>
+      <div class="dm-frame">
+        <h3 class="dm-hd">Client pipeline <span class="dm-badge ok">Works in our test version</span></h3>
+        <div class="dm-stages">
+          <button type="button" class="dm-stage" data-show="d-st-new" aria-pressed="false" data-count="#d-st-new li"><span>New lead</span><b>3</b></button>
+          <button type="button" class="dm-stage" data-show="d-st-qual" aria-pressed="false" data-count="#d-st-qual li"><span>Qualified</span><b>1</b></button>
+          <button type="button" class="dm-stage" data-show="d-st-disc" aria-pressed="false" data-count="#d-st-disc li"><span>Discovery call</span><b>3</b></button>
+          <button type="button" class="dm-stage" data-show="d-st-prop" aria-pressed="false" data-count="#d-st-prop li"><span>Proposal</span><b>1</b></button>
+          <button type="button" class="dm-stage" data-show="d-st-won" aria-pressed="false" data-count="#d-st-won li"><span>Won</span><b>0</b></button>
+          <button type="button" class="dm-stage" data-show="d-st-onb" aria-pressed="false" data-count="#d-st-onb li"><span>Onboarding</span><b>2</b></button>
+          <button type="button" class="dm-stage" data-show="d-st-wip" aria-pressed="false" data-count="#d-st-wip li"><span>Work in progress</span><b>2</b></button>
+          <button type="button" class="dm-stage" data-show="d-st-wrap" aria-pressed="false"><span>Wrap-up</span><b>0</b></button>
+          <button type="button" class="dm-stage lost" data-show="d-st-lost" aria-pressed="false" data-count="#d-st-lost li"><span>Lost</span><b>1</b></button>
+        </div>
+      </div>
+      <div class="dm-two">
+        <div class="dm-frame">
+          <h3 class="dm-hd">Upcoming calls <span class="dm-badge ok">Works in our test version</span></h3>
+          <ul class="dm-list">
+            <li><button type="button" class="dm-row" data-show="d-call-1" aria-pressed="false"><span><b>Today 10:00 · Blue Mesa Heating</b><small>First call · brief not approved yet</small></span></button></li>
+            <li><button type="button" class="dm-row" data-show="d-call-2" aria-pressed="false"><span><b>Monday 14:30 · Cedar Hollow Bakery</b><small>First call · brief not approved yet</small></span></button></li>
+            <li><button type="button" class="dm-row" data-show="d-call-3" aria-pressed="false"><span><b>Tuesday 09:00 · Northwind Print Shop</b><small>Onboarding check-in</small></span></button></li>
+            <li><button type="button" class="dm-row" data-show="d-call-4" aria-pressed="false"><span><b>Wednesday 11:00 · Pinecrest Veterinary</b><small>First call · brief being drafted</small></span></button></li>
+          </ul>
+        </div>
+        <div class="dm-frame">
+          <h3 class="dm-hd">Recent client activity <span class="dm-badge todo">New panel</span></h3>
+          <ul class="dm-list">
+            <li><button type="button" class="dm-row" data-show="d-act-1" aria-pressed="false"><span><b>Northwind Print Shop signed the proposal</b><small>Yesterday 16:05</small></span></button></li>
+            <li><button type="button" class="dm-row" data-show="d-act-2" aria-pressed="false"><span><b>Proposal sent to Harbor Point Plumbing</b><small>Yesterday 11:20</small></span></button></li>
+            <li><button type="button" class="dm-row" data-show="d-act-3" aria-pressed="false"><span><b>Blue Mesa Heating booked a first call</b><small>Sep 30, 08:45</small></span></button></li>
+          </ul>
+        </div>
+      </div>
+      <div class="dm-frame">
+        <h3 class="dm-hd">Follow-ups <span class="dm-badge ok">Works in our test version</span></h3>
+        <ul class="dm-list">
+          <li><button type="button" class="dm-row" data-show="d-fu-1" aria-pressed="false"><span><b>Monday · Kestrel Auto Body</b><small>Send the questionnaire</small></span></button></li>
+          <li><button type="button" class="dm-row" data-show="d-fu-2" aria-pressed="false"><span><b>Tuesday · Harbor Point Plumbing</b><small>Ask whether the proposal needs changes</small></span></button></li>
+        </ul>
+      </div>
+    </div>
+    <aside class="dm-insp dm-frame" aria-label="Details">
+      <h3 class="dm-hd">Details</h3>
+      <button type="button" class="dm-btn dm-back" hidden>Back to the list</button>
+      <p class="dm-insp-empty">Click any row to see it here.</p>
+      <div class="dm-detail" id="d-ap-1">
+        <h4>Call notes · Harbor Point Plumbing</h4>
+        <dl class="dm-kv"><dt>Status</dt><dd>Draft, waiting for you</dd><dt>From</dt><dd>The transcript you pasted in after the call</dd><dt>Next steps</dt><dd>Answer their questions on the proposal; check in on Tuesday</dd></dl>
+        <p>Once you approve them, the notes are fixed in the client's history and cannot be edited.</p>
+        <p><span class="dm-badge ok">Works in our test version</span></p>
+        <div class="dm-acts"><button type="button" class="dm-btn go" data-say="In the real system this approves the notes and fixes them in the history.">Approve</button><button type="button" class="dm-btn" data-say="In the real system the notes stay a draft for you to edit.">Keep as a draft</button></div>
+      </div>
+      <div class="dm-detail" id="d-ap-2">
+        <h4>Pre-call brief · Blue Mesa Heating</h4>
+        <dl class="dm-kv"><dt>Status</dt><dd>Drafted, waiting for you</dd><dt>Drafted by</dt><dd>The AI helper, on the Mac mini. It is designed so nothing goes to an outside AI company.</dd><dt>Known</dt><dd>9 facts, each with its source</dd><dt>Guessed</dt><dd>4 facts for you to confirm</dd><dt>Ask on the call</dt><dd>Who runs the office when the owner is away</dd></dl>
+        <p>The brief page and its seven business-file sections work in our test version, filled in by hand. The AI helper that drafts it is not built yet.</p>
+        <p><span class="dm-badge todo">Not built yet</span></p>
+        <div class="dm-acts"><button type="button" class="dm-btn go" data-say="In the real system this approves the brief. Guessed facts stay marked until you confirm each one.">Approve</button><button type="button" class="dm-btn" data-say="In the real system this sends the draft back to the AI helper with your note.">Send back</button></div>
+      </div>
+      <div class="dm-detail" id="d-ap-3">
+        <h4>Pre-call brief · Cedar Hollow Bakery</h4>
+        <dl class="dm-kv"><dt>Status</dt><dd>Drafted, waiting for you</dd><dt>For</dt><dd>Monday's first call, 14:30</dd><dt>Goes to</dt><dd>The business file, once you approve it</dd></dl>
+        <p><span class="dm-badge todo">Not built yet</span></p>
+        <div class="dm-acts"><button type="button" class="dm-btn go" data-say="In the real system this approves the brief. Guessed facts stay marked until you confirm each one.">Approve</button></div>
+      </div>
+      <div class="dm-detail" id="d-st-new"><h4>New lead · 3</h4><ul class="plain"><li>Juniper Ridge Landscaping, found us another way</li><li>Stone Mill Hardware, referred by someone</li><li>Sunrise Car Wash, saw our advertising</li></ul><p>Every move between stages is kept in a history that cannot be edited.</p></div>
+      <div class="dm-detail" id="d-st-qual"><h4>Qualified · 1</h4><ul class="plain"><li>Kestrel Auto Body</li></ul></div>
+      <div class="dm-detail" id="d-st-disc"><h4>Discovery call · 3</h4><ul class="plain"><li>Blue Mesa Heating, today 10:00</li><li>Cedar Hollow Bakery, Monday 14:30</li><li>Pinecrest Veterinary, Wednesday 11:00</li></ul></div>
+      <div class="dm-detail" id="d-st-prop"><h4>Proposal · 1</h4><ul class="plain"><li>Harbor Point Plumbing, proposal sent</li></ul></div>
+      <div class="dm-detail" id="d-st-won"><h4>Won · 0</h4><p>No clients at Won right now: signing moves a client straight to onboarding.</p></div>
+      <div class="dm-detail" id="d-st-onb"><h4>Onboarding · 2</h4><ul class="plain"><li>Northwind Print Shop, welcome ready to send</li><li>Coastal Tile Works, signed last week</li></ul></div>
+      <div class="dm-detail" id="d-st-wip"><h4>Work in progress · 2</h4><ul class="plain"><li>Maple Street Dental</li><li>Granite Peak Roofing</li></ul></div>
+      <div class="dm-detail" id="d-st-wrap"><h4>Wrap-up · 0</h4><p>No clients in wrap-up right now.</p></div>
+      <div class="dm-detail" id="d-st-lost"><h4>Lost · 1</h4><ul class="plain"><li>Riverside Florist, chose not to go ahead</li></ul></div>
+      <div class="dm-detail" id="d-call-1"><h4>Today 10:00 · Blue Mesa Heating</h4><dl class="dm-kv"><dt>Call</dt><dd>First call, booked by Blue Mesa's owner on your booking page</dd><dt>Before it</dt><dd>The pre-call brief is waiting for your okay</dd></dl><p><span class="dm-badge ok">Works in our test version</span></p></div>
+      <div class="dm-detail" id="d-call-2"><h4>Monday 14:30 · Cedar Hollow Bakery</h4><dl class="dm-kv"><dt>Call</dt><dd>First call</dd><dt>Before it</dt><dd>The pre-call brief is waiting for your okay</dd><dt>After it</dt><dd>You paste in the transcript and approve the notes</dd></dl></div>
+      <div class="dm-detail" id="d-call-3"><h4>Tuesday 09:00 · Northwind Print Shop</h4><dl class="dm-kv"><dt>Call</dt><dd>Onboarding check-in</dd></dl></div>
+      <div class="dm-detail" id="d-call-4"><h4>Wednesday 11:00 · Pinecrest Veterinary</h4><dl class="dm-kv"><dt>Call</dt><dd>First call</dd><dt>Before it</dt><dd>The AI helper is drafting the pre-call brief now</dd></dl></div>
+      <div class="dm-detail" id="d-act-1"><h4>Northwind Print Shop signed</h4><p>Signing sets up their client record and their work with you in one step, and writes their welcome message, ready to send. No email service is connected in our test version yet, so messages wait until you send them.</p><p><span class="dm-badge ok">Works in our test version</span></p></div>
+      <div class="dm-detail" id="d-act-2"><h4>Proposal sent to Harbor Point Plumbing</h4><p>They read and sign it from a private link. No email service is connected in our test version yet, so you pass the link on yourself. Every version is kept.</p><p><span class="dm-badge ok">Works in our test version</span></p></div>
+      <div class="dm-detail" id="d-act-3"><h4>Blue Mesa Heating booked a first call</h4><p>They picked a time on your booking page. It went straight into your calls and the pipeline.</p><p><span class="dm-badge ok">Works in our test version</span></p></div>
+      <div class="dm-detail" id="d-fu-1"><h4>Monday · Kestrel Auto Body</h4><p>Send the questionnaire.</p><div class="dm-acts"><button type="button" class="dm-btn" data-say="In the real system this marks the follow-up done.">Mark done</button></div></div>
+      <div class="dm-detail" id="d-fu-2"><h4>Tuesday · Harbor Point Plumbing</h4><p>Ask whether the proposal needs changes.</p></div>
+      <p class="dm-say" aria-live="polite"></p>
+    </aside>
+  </div>
+</section>
+
+<!-- ===================== MAC MINI ===================== -->
+<section class="dm-screen" id="dm-mini" data-screen="mini" aria-labelledby="mini-h">
+  <p class="dm-sample">Sample · made-up data</p>
+  <h2 id="mini-h">Mac mini status</h2>
+  <p class="dm-note">Your Mac mini is not set up yet: that is step 1 on the map. This is the screen you would have once it is. Every part on it is marked not built yet, and every figure is an example.</p>
+  <p class="dm-headline">In this example, the mini is drafting one brief, two briefs wait for your okay, and last night's locked copy finished.</p>
+  <div class="dm-tiles">
+    <div class="dm-tile ok" data-count="#dm-mini .dm-list .dm-badge.ok"><span class="v">1</span><span class="k">Job running</span></div>
+    <div class="dm-tile" data-count="#dm-mini [data-queued]"><span class="v">1</span><span class="k">Job queued</span></div>
+    <div class="dm-tile" data-count="#dm-mini [data-done-today]"><span class="v">3</span><span class="k">Jobs done today</span></div>
+    <div class="dm-tile warn" data-count="#dm-mini .dm-list .dm-badge.warn"><span class="v">2</span><span class="k">Briefs waiting for your okay</span></div>
+    <div class="dm-tile"><span class="v">82%</span><span class="k">Disk free</span></div>
+    <div class="dm-tile"><span class="v">02:31</span><span class="k">Last locked copy</span></div>
+  </div>
+  <div class="dm-body">
+    <div>
+      <div class="dm-frame">
+        <h3 class="dm-hd">Jobs <span class="dm-badge todo">Not built yet</span></h3>
+        <p class="dm-gloss">Work the mini does for you in the background, one line per job.</p>
+        <ul class="dm-list">
+          <li><button type="button" class="dm-row" data-show="d-job-1" aria-pressed="false"><span><b>Pre-call brief · Pinecrest Veterinary</b><small>Running since 09:12</small></span><span class="dm-badge ok">Running</span></button></li>
+          <li><button type="button" class="dm-row" data-show="d-job-3" aria-pressed="false" data-queued><span><b>Nightly locked copy</b><small>Starts tonight at 02:00</small></span><span class="dm-badge">Queued</span></button></li>
+          <li><button type="button" class="dm-row" data-show="d-job-4" aria-pressed="false" data-done-today><span><b>Pre-call brief · Cedar Hollow Bakery</b><small>Finished 08:40 · waiting for your okay</small></span><span class="dm-badge warn">Waiting for you</span></button></li>
+          <li><button type="button" class="dm-row" data-show="d-job-2" aria-pressed="false" data-done-today><span><b>Pre-call brief · Blue Mesa Heating</b><small>Finished 08:05 · waiting for your okay</small></span><span class="dm-badge warn">Waiting for you</span></button></li>
+          <li><button type="button" class="dm-row" data-show="d-job-5" aria-pressed="false" data-done-today><span><b>Nightly locked copy</b><small>Finished 02:31</small></span><span class="dm-badge">Done</span></button></li>
+        </ul>
+      </div>
+      <div class="dm-two">
+        <div class="dm-frame">
+          <h3 class="dm-hd">AI helper <span class="dm-badge todo">Not built yet</span></h3>
+          <p><span class="dm-badge ok">Working</span></p>
+          <p>Drafting the pre-call brief for Pinecrest Veterinary. It is designed to run on the mini itself, so client files never go to an outside AI company. You approve every draft before it counts.</p>
+          <button type="button" class="dm-btn" data-show="d-ai">More about the helper</button>
+        </div>
+        <div class="dm-frame">
+          <h3 class="dm-hd">Disk <span class="dm-badge todo">Not built yet</span></h3>
+          <div class="dm-meter" role="img" aria-label="Disk: 18 percent used, 82 percent free"><span style="width: 18%"></span></div>
+          <p><span class="dm-fig">18%</span> used · <span class="dm-fig">82%</span> free. Client files take very little room.</p>
+          <p>The disk gets encrypted when we set up the mini: its files are scrambled so they cannot be read without the password, even if the mini is taken while switched off.</p>
+        </div>
+      </div>
+      <div class="dm-two">
+        <div class="dm-frame">
+          <h3 class="dm-hd">Back-ups <span class="dm-badge todo">Not built yet</span></h3>
+          <p class="dm-gloss">A locked copy is scrambled so only your key opens it. A test restore rebuilds everything from a copy to prove the copy works.</p>
+          <ul class="dm-list">
+            <li><button type="button" class="dm-row" data-show="d-bk-1" aria-pressed="false"><span><b>Last nightly locked copy</b><small>Today 02:31, to the encrypted drive</small></span><span class="dm-badge">Done</span></button></li>
+            <li><button type="button" class="dm-row" data-show="d-bk-2" aria-pressed="false"><span><b>Second copy, kept somewhere else</b><small>Comes later · place to be chosen with you</small></span></button></li>
+            <li><button type="button" class="dm-row" data-show="d-bk-3" aria-pressed="false"><span><b>Last test restore</b><small>Sunday, from Saturday's copy</small></span><span class="dm-badge">Passed</span></button></li>
+          </ul>
+        </div>
+        <div class="dm-frame">
+          <h3 class="dm-hd">Who is connected <span class="dm-badge todo">Not built yet</span></h3>
+          <p>Through the private network app. Only people you add can reach the mini. The devices and times below are examples.</p>
+          <ul class="dm-list">
+            <li><button type="button" class="dm-row" data-show="d-net-1" aria-pressed="false"><span><b>You · phone</b><small>Connected now</small></span></button></li>
+            <li><button type="button" class="dm-row" data-show="d-net-2" aria-pressed="false"><span><b>You · laptop</b><small>Last seen 07:55</small></span></button></li>
+            <li><button type="button" class="dm-row" data-show="d-net-3" aria-pressed="false"><span><b>Your CPA · laptop</b><small>Connected now · books only</small></span></button></li>
+            <li><button type="button" class="dm-row" data-show="d-net-4" aria-pressed="false"><span><b>An accountant · laptop</b><small>Last seen yesterday · books only</small></span></button></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <aside class="dm-insp dm-frame" aria-label="Details">
+      <h3 class="dm-hd">Details</h3>
+      <button type="button" class="dm-btn dm-back" hidden>Back to the list</button>
+      <p class="dm-insp-empty">Click any row to see it here.</p>
+      <div class="dm-detail" id="d-job-1"><h4>Pre-call brief · Pinecrest Veterinary</h4><dl class="dm-kv"><dt>State</dt><dd>Running since 09:12</dd><dt>Reads</dt><dd>The business file and the owner's questionnaire</dd><dt>Ends as</dt><dd>A draft waiting for your okay on your home dashboard</dd></dl><p>The brief is the first job we build for the mini.</p></div>
+      <div class="dm-detail" id="d-job-2"><h4>Pre-call brief · Blue Mesa Heating</h4><p>Finished. The brief waits for your okay on your home dashboard, before today's 10:00 call.</p><div class="dm-acts"><button type="button" class="dm-btn go" data-goto="home">Go to your dashboard</button></div></div>
+      <div class="dm-detail" id="d-job-3"><h4>Nightly locked copy</h4><p>Every night the mini copies everything to the encrypted drive attached to it. A second copy kept somewhere else comes later. The times on this screen are examples.</p></div>
+      <div class="dm-detail" id="d-job-4"><h4>Pre-call brief · Cedar Hollow Bakery</h4><p>Finished. The brief waits for your okay on your home dashboard, before Monday's call.</p><div class="dm-acts"><button type="button" class="dm-btn go" data-goto="home">Go to your dashboard</button></div></div>
+      <div class="dm-detail" id="d-job-5"><h4>Nightly locked copy</h4><dl class="dm-kv"><dt>Started</dt><dd>02:00</dd><dt>Finished</dt><dd>02:31</dd><dt>Result</dt><dd>Done, nothing skipped</dd></dl></div>
+      <div class="dm-detail" id="d-ai"><h4>The AI helper</h4><dl class="dm-kv"><dt>Runs on</dt><dd>The Mac mini, at your office</dd><dt>Sends out</dt><dd>Nothing, by design. No outside AI company sees client data.</dd><dt>Right now</dt><dd>Working: the Pinecrest Veterinary brief</dd></dl><p>When there is no job, it shows <b>Idle</b>. If you want a new kind of job, you ask us by email and we build it.</p></div>
+      <div class="dm-detail" id="d-bk-1"><h4>Nightly locked copy</h4><p>Everything on the mini, copied to an encrypted drive at your office. The copy is locked, and only you hold its key. When we set this up, we help you choose a safe place to keep the key.</p></div>
+      <div class="dm-detail" id="d-bk-2"><h4>Second copy, kept somewhere else</h4><p>Comes later, after the nightly copy to the drive is working. A second locked copy away from the office, in case something happens there. Only you hold its key. Where it lives is still to be chosen with you.</p></div>
+      <div class="dm-detail" id="d-bk-3"><h4>Last test restore</h4><p>The mini rebuilds everything from a copy in a spare space and checks that it all came back. A copy is only trusted once a restore from it has worked (step 4 on the map).</p></div>
+      <div class="dm-detail" id="d-net-1"><h4>You · phone</h4><p>Reaches everything you can see.</p><div class="dm-acts"><button type="button" class="dm-btn" data-say="In the real system this removes the device at once.">Remove this device</button></div></div>
+      <div class="dm-detail" id="d-net-2"><h4>You · laptop</h4><p>Reaches everything you can see.</p></div>
+      <div class="dm-detail" id="d-net-3"><h4>Your CPA · laptop</h4><p>Reaches the platform, where it can open the books only, never client records.</p><div class="dm-acts"><button type="button" class="dm-btn" data-say="In the real system this removes your CPA's access at once. You can add them back later.">Remove access</button></div></div>
+      <div class="dm-detail" id="d-net-4"><h4>An accountant · laptop</h4><p>Reaches the books only. You add and remove each person.</p><div class="dm-acts"><button type="button" class="dm-btn" data-say="In the real system this removes the accountant's access at once.">Remove access</button></div></div>
+      <p class="dm-say" aria-live="polite"></p>
+    </aside>
+  </div>
+</section>
+
+<!-- ===================== FILE VAULT ===================== -->
+<section class="dm-screen" id="dm-vault" data-screen="vault" aria-labelledby="vault-h">
+  <p class="dm-sample">Sample · made-up data</p>
+  <h2 id="vault-h">File vault</h2>
+  <p class="dm-headline">The files the mini would hold, grouped by client. Four clients are shown as a sample. Client records sit behind the wall: only you can open them.</p>
+  <p class="dm-legend"><span class="dm-badge lock">You only</span><span class="dm-badge ok">You and the books team</span><span class="dm-badge key">Locked, only you hold the key</span></p>
+  <div class="dm-body">
+    <div>
+      <div class="dm-frame dm-wall">
+        <h3 class="dm-hd">Client records, behind the wall <span class="dm-badge lock">You only</span></h3>
+        <p>Pick a client to see the files kept for them.</p>
+        <ul class="dm-list">
+          <li><button type="button" class="dm-row" data-show="d-vc-1" aria-pressed="false"><span><b>Harbor Point Plumbing</b><small>Proposal · 23 files</small></span></button></li>
+          <li><button type="button" class="dm-row" data-show="d-vc-2" aria-pressed="false"><span><b>Blue Mesa Heating</b><small>Discovery call · 9 files</small></span></button></li>
+          <li><button type="button" class="dm-row" data-show="d-vc-3" aria-pressed="false"><span><b>Maple Street Dental</b><small>Work in progress · 41 files</small></span></button></li>
+          <li><button type="button" class="dm-row" data-show="d-vc-4" aria-pressed="false"><span><b>Northwind Print Shop</b><small>Onboarding · 12 files</small></span></button></li>
+        </ul>
+        <p class="fine">Each client has the same four groups: the business file, documents you add, call notes, and pre-call briefs. The books and the back-ups below are one set for the whole business, not per client.</p>
+      </div>
+      <div class="dm-two">
+        <div class="dm-frame">
+          <h3 class="dm-hd">The books <span class="dm-badge ok">You and the books team</span></h3>
+          <ul class="dm-list">
+            <li><button type="button" class="dm-row stack" data-show="d-vb" aria-pressed="false"><span><b>Ledger, invoices, payments, reports</b><small>One set for the whole business</small></span><span class="dm-badge todo">Not built yet</span></button></li>
+          </ul>
+        </div>
+        <div class="dm-frame">
+          <h3 class="dm-hd">Back-ups <span class="dm-badge key">Locked, only you hold the key</span></h3>
+          <p class="dm-gloss">Scrambled copies that only your key opens. We help you keep the key somewhere safe.</p>
+          <ul class="dm-list">
+            <li><button type="button" class="dm-row stack" data-show="d-vk" aria-pressed="false"><span><b>Nightly locked copies</b><small>On the encrypted drive; a second copy kept somewhere else comes later</small></span><span class="dm-badge todo">Not built yet</span></button></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <aside class="dm-insp dm-frame" aria-label="Details">
+      <h3 class="dm-hd">Details</h3>
+      <button type="button" class="dm-btn dm-back" hidden>Back to the list</button>
+      <p class="dm-insp-empty">Click a client or a group to see it here.</p>
+      <div class="dm-detail" id="d-vc-1"><h4>Harbor Point Plumbing</h4>
+        <table class="dm-table"><thead><tr><th>Group</th><th class="n">Files</th></tr></thead><tbody>
+          <tr><td>Business file (seven sections)</td><td class="n">7</td></tr><tr><td>Documents you add</td><td class="n">11</td></tr><tr><td>Call notes</td><td class="n">3</td></tr><tr><td>Pre-call briefs</td><td class="n">2</td></tr></tbody></table>
+        <p>Who can see: <span class="dm-badge lock">You only</span></p>
+        <p><span class="dm-badge ok">Works in our test version</span></p>
+        <p>The business file, documents and call notes work today. The brief page works too, filled in by hand; the AI helper that would draft it is not built yet.</p>
+        <p class="fine">The seven sections: Business basics · Financial Performance · Operations &amp; Systems · People &amp; Organization · Owner Role &amp; Sustainability · Risk &amp; Resilience · Transferability &amp; Exit Readiness.</p>
+      </div>
+      <div class="dm-detail" id="d-vc-2"><h4>Blue Mesa Heating</h4>
+        <table class="dm-table"><thead><tr><th>Group</th><th class="n">Files</th></tr></thead><tbody>
+          <tr><td>Business file (seven sections)</td><td class="n">7</td></tr><tr><td>Documents you add</td><td class="n">1</td></tr><tr><td>Call notes</td><td class="n">0</td></tr><tr><td>Pre-call briefs</td><td class="n">1</td></tr></tbody></table>
+        <p>Who can see: <span class="dm-badge lock">You only</span></p>
+      </div>
+      <div class="dm-detail" id="d-vc-3"><h4>Maple Street Dental</h4>
+        <table class="dm-table"><thead><tr><th>Group</th><th class="n">Files</th></tr></thead><tbody>
+          <tr><td>Business file (seven sections)</td><td class="n">7</td></tr><tr><td>Documents you add</td><td class="n">24</td></tr><tr><td>Call notes</td><td class="n">8</td></tr><tr><td>Pre-call briefs</td><td class="n">2</td></tr></tbody></table>
+        <p>Who can see: <span class="dm-badge lock">You only</span></p>
+      </div>
+      <div class="dm-detail" id="d-vc-4"><h4>Northwind Print Shop</h4>
+        <table class="dm-table"><thead><tr><th>Group</th><th class="n">Files</th></tr></thead><tbody>
+          <tr><td>Business file (seven sections)</td><td class="n">7</td></tr><tr><td>Documents you add</td><td class="n">3</td></tr><tr><td>Call notes</td><td class="n">1</td></tr><tr><td>Pre-call briefs</td><td class="n">1</td></tr></tbody></table>
+        <p>Who can see: <span class="dm-badge lock">You only</span></p>
+      </div>
+      <div class="dm-detail" id="d-vb"><h4>The books</h4><p>Ledger, invoices, payments and reports for your own business. Open to you and to your CPA, CFO and accountants. They cannot see any client record.</p><p><span class="dm-badge todo">Not built yet</span></p><div class="dm-acts"><button type="button" class="dm-btn go" data-goto="books">Open the books</button></div></div>
+      <div class="dm-detail" id="d-vk"><h4>Nightly locked copies</h4><p>A locked copy of everything above, every night, on the encrypted drive. A second copy kept somewhere else comes later. Only you hold the key. When we set this up, we help you choose a safe place to keep it, because without the key a copy cannot be opened.</p><p><span class="dm-badge todo">Not built yet</span></p></div>
+    </aside>
+  </div>
+</section>
+
+<!-- ===================== BOOKS ===================== -->
+<section class="dm-screen" id="dm-books" data-screen="books" aria-labelledby="books-h">
+  <p class="dm-sample">Sample · made-up data</p>
+  <h2 id="books-h">Books team view</h2>
+  <p class="dm-note">The books are not built yet. This is the design we propose. Invoices already work in our test version; here they are shown as they would sit inside the books. Each person sees the same books; what they can do depends on who they are.</p>
+  <p class="dm-headline" data-roles="owner">You can see all of the books. The entries, sign-off and locking are your books team's work, and you decide who is on it.</p>
+  <p class="dm-headline" data-roles="cfo">September is complete and ready for your sign-off. August is signed off and locked.</p>
+  <p class="dm-headline" data-roles="cpa">August is locked. You lock September once it is closed.</p>
+  <p class="dm-headline" data-roles="acct">One payment, from Maple Street Dental, is waiting to be matched to its invoice.</p>
+  <div class="dm-tiles">
+    <div class="dm-tile" data-count="#dm-books .dm-table .dm-badge.warn"><span class="v">2</span><span class="k">Open invoices</span></div>
+    <div class="dm-tile" data-count="#dm-books [data-unmatched]"><span class="v">1</span><span class="k">Payments to match</span></div>
+    <div class="dm-tile ok"><span class="v words">Signed off, locked</span><span class="k">August</span></div>
+    <div class="dm-tile warn"><span class="v words">Ready for sign-off</span><span class="k">September</span></div>
+  </div>
+  <div class="dm-body">
+    <div>
+      <div class="dm-frame" data-sample-figures>
+        <h3 class="dm-hd">Ledger <span class="dm-badge todo">Not built yet</span></h3>
+        <p class="dm-gloss">Every money entry, newest first, with who made it.</p>
+        <ul class="dm-list">
+          <li><button type="button" class="dm-row" data-show="d-lg-5" aria-pressed="false"><span><b>Oct 1 · Invoice sent · Northwind Print Shop</b><small>Sent by an accountant</small></span><span class="dm-fig">$1,240.00</span></button></li>
+          <li><button type="button" class="dm-row" data-show="d-lg-0" aria-pressed="false" data-unmatched><span><b>Oct 1 · Payment received · Maple Street Dental</b><small>Recorded by an accountant · not matched yet</small></span><span class="dm-fig">$975.00</span></button></li>
+          <li><button type="button" class="dm-row" data-show="d-lg-1" aria-pressed="false"><span><b>Sep 25 · Payment received · Granite Peak Roofing</b><small>Recorded by an accountant</small></span><span class="dm-fig">$1,610.00</span></button></li>
+          <li><button type="button" class="dm-row" data-show="d-lg-2" aria-pressed="false"><span><b>Sep 25 · Office rent, September</b><small>Recorded by an accountant</small></span><span class="dm-fig">$2,150.00</span></button></li>
+          <li><button type="button" class="dm-row" data-show="d-lg-3" aria-pressed="false"><span><b>Sep 22 · Correcting entry: software bill posted twice</b><small>Posted by an accountant</small></span><span class="dm-fig">$86.40</span></button></li>
+          <li><button type="button" class="dm-row" data-show="d-lg-4" aria-pressed="false"><span><b>Sep 18 · Invoice sent · Maple Street Dental</b><small>Sent by an accountant</small></span><span class="dm-fig">$975.00</span></button></li>
+        </ul>
+        <div class="dm-acts">
+          <button type="button" class="dm-btn" data-roles="acct" data-say="In the real system this opens a new entry. It carries your name and the time once saved.">Record an entry</button>
+          <button type="button" class="dm-btn" data-roles="cpa" data-say="In the real system this opens a year-end or tax adjustment. The original stays; the change is a new entry with your name on it.">Post an adjusting entry</button>
+          <button type="button" class="dm-btn" disabled>Delete an entry (nobody can)</button>
+        </div>
+      </div>
+      <div class="dm-two">
+        <div class="dm-frame dm-wide" data-sample-figures>
+          <h3 class="dm-hd">Invoices and payments <span class="dm-badge todo">Not built yet</span></h3>
+          <div class="dm-scroll"><table class="dm-table"><thead><tr><th>Client</th><th class="n">Amount</th><th>Status</th></tr></thead><tbody>
+            <tr><td>Granite Peak Roofing</td><td class="n">$1,610.00</td><td><span class="dm-badge ok">Paid</span></td></tr>
+            <tr><td>Maple Street Dental</td><td class="n">$975.00</td><td><span class="dm-badge warn">Due</span></td></tr>
+            <tr><td>Northwind Print Shop</td><td class="n">$1,240.00</td><td><span class="dm-badge warn">Due</span></td></tr>
+            <tr><td>Coastal Tile Works</td><td class="n">$640.00</td><td><span class="dm-badge">Being prepared</span></td></tr>
+          </tbody></table></div>
+          <div class="dm-acts"><button type="button" class="dm-btn" data-roles="acct" data-say="In the real system this matches the payment to its invoice and marks the invoice paid.">Match a payment</button><button type="button" class="dm-btn" data-roles="acct" data-say="In the real system this sends the invoice to the client and records who sent it and when.">Send an invoice</button></div>
+        </div>
+        <div class="dm-frame dm-wide">
+          <h3 class="dm-hd">Reports <span class="dm-badge todo">Not built yet</span></h3>
+          <ul class="dm-list">
+            <li><button type="button" class="dm-row" data-show="d-rp-1" aria-pressed="false"><span><b>Profit and loss</b><small>September</small></span></button></li>
+            <li><button type="button" class="dm-row" data-show="d-rp-2" aria-pressed="false"><span><b>Balance sheet</b><small>End of August</small></span></button></li>
+            <li><button type="button" class="dm-row" data-show="d-rp-3" aria-pressed="false"><span><b>Cash coming in and going out</b><small>Last three months</small></span></button></li>
+          </ul>
+        </div>
+      </div>
+      <div class="dm-two">
+        <div class="dm-frame dm-wide">
+          <h3 class="dm-hd">Month lock <span class="dm-badge todo">Not built yet</span></h3>
+          <table class="dm-table"><thead><tr><th>Month</th><th>CFO sign-off</th><th>Locked by your CPA</th></tr></thead><tbody>
+            <tr><td>July</td><td>Signed off</td><td>Locked</td></tr>
+            <tr><td>August</td><td>Signed off</td><td>Locked</td></tr>
+            <tr><td>September</td><td>Waiting</td><td>Not yet</td></tr>
+          </tbody></table>
+          <div class="dm-acts">
+            <button type="button" class="dm-btn go" data-roles="cfo" data-say="In the real system this signs off September with your name and the time.">Sign off September</button>
+            <button type="button" class="dm-btn go" data-roles="cpa" data-say="In the real system this locks September once it is closed. A locked month cannot be changed.">Lock September</button>
+          </div>
+          <p class="fine">A locked month cannot be changed. A mistake found later is fixed with a correcting entry in an open month.</p>
+        </div>
+        <div class="dm-frame dm-wide">
+          <h3 class="dm-hd">Download for back-up <span class="dm-badge todo">Not built yet</span></h3>
+          <p>Take a copy of the books any time.</p>
+          <div class="dm-acts">
+            <button type="button" class="dm-btn" data-say="In the real system this downloads the books as a spreadsheet.">As a spreadsheet</button>
+            <button type="button" class="dm-btn" data-say="In the real system this downloads the books as a file QuickBooks reads.">As a file QuickBooks reads</button>
+          </div>
+        </div>
+      </div>
+      <div class="dm-frame dm-wall" data-roles="cfo cpa acct">
+        <h3 class="dm-hd">Client records <span class="dm-badge lock">Not visible to you</span></h3>
+        <p>Business files, documents, call notes and briefs stay behind the wall. Only the owner can open them. You see the invoices and payments, never what is inside a client's file.</p>
+      </div>
+      <div class="dm-frame dm-wall" data-roles="owner">
+        <h3 class="dm-hd">Client records <span class="dm-badge lock">You only</span></h3>
+        <p>Your books team never sees these. They see invoices and payments, never what is inside a client's file.</p>
+        <div class="dm-acts"><button type="button" class="dm-btn" data-goto="vault">Open the file vault</button></div>
+      </div>
+    </div>
+    <aside class="dm-insp dm-frame" aria-label="Details">
+      <h3 class="dm-hd">Details</h3>
+      <button type="button" class="dm-btn dm-back" hidden>Back to the list</button>
+      <p class="dm-insp-empty">Click an entry or a report to see it here.</p>
+      <div class="dm-detail" id="d-lg-5" data-sample-figures><h4>Invoice sent</h4><dl class="dm-kv"><dt>To</dt><dd>Northwind Print Shop</dd><dt>Amount</dt><dd class="dm-fig">$1,240.00</dd><dt>Sent by</dt><dd>An accountant, Oct 1 at 17:10</dd><dt>Status</dt><dd>Due</dd></dl><p>Their first invoice. Once it is paid, they move to work in progress.</p></div>
+      <div class="dm-detail" id="d-lg-0" data-sample-figures><h4>Payment received</h4><dl class="dm-kv"><dt>From</dt><dd>Maple Street Dental</dd><dt>Amount</dt><dd class="dm-fig">$975.00</dd><dt>Recorded by</dt><dd>An accountant, Oct 1 at 16:20</dd><dt>Matched to</dt><dd>Not yet: the invoice sent Sep 18</dd></dl></div>
+      <div class="dm-detail" id="d-lg-1" data-sample-figures><h4>Payment received</h4><dl class="dm-kv"><dt>From</dt><dd>Granite Peak Roofing</dd><dt>Amount</dt><dd class="dm-fig">$1,610.00</dd><dt>Recorded by</dt><dd>An accountant, Sep 25 at 15:02</dd><dt>Matched to</dt><dd>Invoice 1031</dd></dl></div>
+      <div class="dm-detail" id="d-lg-2" data-sample-figures><h4>Office rent, September</h4><dl class="dm-kv"><dt>Amount</dt><dd class="dm-fig">$2,150.00</dd><dt>Recorded by</dt><dd>An accountant, Sep 25 at 09:40</dd></dl></div>
+      <div class="dm-detail" id="d-lg-3" data-sample-figures><h4>Correcting entry</h4><dl class="dm-kv"><dt>Why</dt><dd>A software bill was posted twice on Sep 12</dd><dt>Amount</dt><dd class="dm-fig">$86.40</dd><dt>Posted by</dt><dd>An accountant, Sep 22 at 11:15</dd></dl><p>The Sep 12 entry is still there. Nothing is erased, so the history stays whole.</p></div>
+      <div class="dm-detail" id="d-lg-4" data-sample-figures><h4>Invoice sent</h4><dl class="dm-kv"><dt>To</dt><dd>Maple Street Dental</dd><dt>Amount</dt><dd class="dm-fig">$975.00</dd><dt>Sent by</dt><dd>An accountant, Sep 18 at 10:05</dd><dt>Status</dt><dd>Due</dd></dl><p>Their second invoice. The first was paid in August.</p></div>
+      <div class="dm-detail" id="d-rp-1"><h4>Profit and loss</h4><p>September, by kind of income and cost.</p><p data-roles="cfo">You see every report, and you sign off each month once it is complete.</p></div>
+      <div class="dm-detail" id="d-rp-2"><h4>Balance sheet</h4><p>What the business owns and owes at the end of August, the last locked month.</p></div>
+      <div class="dm-detail" id="d-rp-3"><h4>Cash coming in and going out</h4><p>Money in and money out for the last three months.</p></div>
+      <p class="dm-say" aria-live="polite"></p>
+    </aside>
+  </div>
+</section>
+</div>
+</div>
+
+<section class="band" aria-labelledby="next-h">
+  <h2 id="next-h">What happens next</h2>
+  <p class="narrow">Nothing here goes into the real system until you say so. The order of the work is on the <a href="books-and-hosting.html">map</a>: the Mac mini first, then the platform moves onto it, then the private network app, the nightly copies and the books.</p>
+  <p class="narrow">Tell us what you would change, in a reply to our email: a screen, a word, or who sees what.</p>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="inner">
+    <div>
+      <p><b>Humble Services Business Consulting</b><br>A d/b/a of Humble Services, Inc., a Wyoming corporation. Available to owners across the United States.</p>
+      <p>30 N Gould St., Ste R, Sheridan, WY 82801<br>office@humblebusinessconsulting.com<br>humblebusinessconsulting.com</p>
+      <div class="placeholder" data-placeholder="public-contact"><p class="ph-label">Placeholder — Clark to supply: public phone number.</p></div>
+    </div>
+    <ul aria-label="More">
+      <li><a href="scorecard/index.html">Take the Business Independence Scorecard</a></li>
+      <li><a href="contact.html">Book a Consultation</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms of Use</a></li>
+      <li><a href="login.html">Client login</a></li>
+    </ul>
+    <p class="disclaimer">Humble Services provides business advisory and decision support. It does not provide legal, tax, securities or investment advice, formal valuations, or psychotherapy, and it does not promise any sale price, valuation or financial result.</p>
+  </div>
+</footer>
+<script src="system-demo.js"></script>
+</body>
+</html>
