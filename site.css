@@ -93,6 +93,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .site-nav a { display: inline-block; padding: 6px 0; font-size: .88rem; color: var(--on-ink); text-decoration: none; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: var(--on-ink); border-bottom-color: var(--on-ink); background: var(--brand-hi); }
 .site-nav a[aria-current="page"] { color: var(--on-ink); border-bottom-color: var(--on-ink); font-weight: 700; }
+/* Tap targets: every header, menu and footer link is at least 44px tall (WCAG 2.5.5). */
+.site-nav a, .nav-toggle, .header-cta, .site-footer li a { min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; }
+.site-footer li { margin-bottom: 0; }
 /* Browser note: unfolding a closed <details> on wide screens needs ::details-content (Chrome/Edge 131+, Safari 18.4+,
    Firefox 143+). Ceiling: an older browser shows the Menu button at every width, so desktop visitors there tap once
    to see the nav; nothing is lost. Upgrade path: the Phase 2 Next.js header renders a plain nav on wide screens. */
@@ -225,7 +228,7 @@ fieldset { border: 0; padding: 0; margin: 0; }
   .header-cta { grid-column: 2; grid-row: 2; align-self: start; position: relative; z-index: 1; }
   .site-nav { padding: 8px 0 0; }
   .site-nav ul { display: block; }
-  .site-nav a { display: block; padding: 9px 0; border-bottom: 1px solid var(--line); }
+  .site-nav a { display: flex; padding: 9px 0; border-bottom: 1px solid var(--line); }
   .site-nav li:last-child a { border-bottom: 0; }
   .site-nav a[aria-current="page"] { border-bottom: 1px solid var(--line); }
   .hero { grid-template-columns: 1fr; gap: 12px; }
