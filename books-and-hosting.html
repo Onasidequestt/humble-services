@@ -13,9 +13,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;1,8..60,500&display=swap">
 <link rel="stylesheet" href="site.css">
 </head>
-<body>
+<body class="tap44">
 <a class="skip" href="#main">Skip to main content</a>
-<div class="review-banner" role="note">Review draft for Humble Services, not live yet.</div>
 <header class="site-header">
   <div class="header-inner">
     <a class="brand" href="index.html"><img src="assets/logo.png" alt="" width="44" height="55"><span class="wordmark">Humble Services<small>Business Consulting</small></span></a>
@@ -40,7 +39,7 @@
 </header>
 <main id="main" tabindex="-1">
 <h1>Your Mac mini: Bookkeeping and Hosting Map</h1>
-<p class="lede narrow">One machine at your office runs the whole business. Your clients' files stay on it.</p>
+<p class="lede narrow">One machine at your office runs the whole business. Your clients' files are kept on it, not with a cloud hosting company.</p>
 <p class="narrow"><b>Our recommendation: host the whole business on your own Mac mini at your office, rather than renting space from a cloud company.</b> This is a proposal for you to check. We build each part once you are happy with it.</p>
 <p class="narrow sample-note">Want to see it? <a href="system-demo.html">Click through the demo</a>: your dashboard, the Mac mini, every file it holds, and what your books team sees, with made-up sample data.</p>
 
@@ -57,7 +56,7 @@
     <div class="mm-down" aria-hidden="true"></div>
     <div class="mm-band mm-mini">
       <h3>Your Mac mini, at your office</h3>
-      <p>Its disk gets encrypted when we set it up (step 1 below). Client files stay on it. Only the locked back-up copy leaves, and only you hold its key.</p>
+      <p>Its disk gets encrypted when we set it up (step 1 below). Client files are kept on it. Today's nightly locked copy stays at your office; a second locked copy kept somewhere else comes later. Only you hold its key.</p>
       <div class="mm-inner">
         <div class="mm-box"><h3>Sign-in</h3><p>Your own password plus a code from an app on your phone.</p><span class="mm-chip">Works in our test version</span></div>
         <div class="mm-down" aria-hidden="true"></div>
@@ -67,7 +66,7 @@
         <div class="mm-down" aria-hidden="true"></div>
         <div class="mm-row">
           <div class="mm-box mm-todo"><h3>The books</h3><p>Ledger, invoices, payments, reports. Open to you and to your CPA, CFO and accountants.</p><span class="mm-chip">Not built yet</span></div>
-          <div class="mm-box mm-wall"><h3>Client records</h3><p>Business files and call notes. Open to you only, not to the books team.</p><span class="mm-chip">Works in our test version</span></div>
+          <div class="mm-box mm-wall"><h3>Client records</h3><p>Business files and call notes. The design: open to you only, not to the books team. The records work in our test version; the wall that keeps the books team out is not built yet.</p><span class="mm-chip">Wall not built yet</span></div>
         </div>
       </div>
     </div>
@@ -76,7 +75,8 @@
       <div class="mm-box mm-todo"><h3>Nightly locked copy</h3><p>To an encrypted drive at the office. A second copy kept somewhere else comes later. Only you hold its key.</p><span class="mm-chip">Not built yet</span></div>
       <div class="mm-box mm-todo"><h3>Download for back-up</h3><p>The books as a spreadsheet, or as a file QuickBooks reads.</p><span class="mm-chip">Not built yet</span></div>
     </div>
-    <div class="mm-box mm-side"><h3>Bluehost stays as it is</h3><p>Your web address, your public website and, once set up, your email. None of it moves.</p></div>
+    <div class="mm-box mm-side"><h3>Bluehost stays as it is</h3><p>Your web address, your public website and, once set up, your email. None of it moves. Email sent and received there sits with Bluehost, not on the mini.</p></div>
+    <div class="mm-box mm-side mm-todo"><h3>SOC 2: a goal</h3><p>SOC 2 is a check of how the business keeps data safe, done by an outside auditor. We build with it in mind. The audit has not started, and only the auditor can say whether it passes.</p><span class="mm-chip">Audit not started</span></div>
   </div>
   <p class="mm-legend"><span>Solid: works in our test version</span><span class="l-todo">Dashed: not built yet</span><span class="l-wall">Heavy: the wall around client records</span></p>
 </section>
@@ -100,11 +100,11 @@
   <h2 id="why-h">Why the Mac mini</h2>
   <p class="narrow">We recommend your own Mac mini over renting cloud hosting because:</p>
   <ul class="narrow">
-    <li>Your clients' financial records stay on a machine you own. No outside hosting company holds them.</li>
+    <li>Your clients' financial records are kept on a machine you own, not on a cloud hosting company's servers. The exceptions are email, which stays with Bluehost, and, later, a second locked back-up copy kept somewhere else, which only you can open.</li>
     <li>The AI helper runs on the mini itself, so client data is designed not to go to an AI company.</li>
   </ul>
   <h3 class="narrow">Can one mini handle thousands of clients?</h3>
-  <p class="narrow">We tested the database on a stand-in computer with 5,000 made-up businesses. Each took up very little room, so thousands of clients fit easily. Three screens got slow at that size; we have already proven a fix (a faster way for the platform to check who may see each record), and it goes in before launch. The mini itself gets the same test at step 6, and we show you the result before anything goes live.</p>
+  <p class="narrow">We tested the database on a stand-in computer, not the mini, with 5,000 made-up businesses. Each took up very little room. Three screens got slow at that size; we have tested a fix on the stand-in computer that made them much faster (a faster way for the platform to check who may see each record), and it goes in before launch. The mini itself gets the same test at step 6, and we show you the result before anything goes live.</p>
 </section>
 
 <section class="band" aria-labelledby="move-h">
@@ -128,7 +128,6 @@
     <div>
       <p><b>Humble Services Business Consulting</b><br>A d/b/a of Humble Services, Inc., a Wyoming corporation. Available to owners across the United States.</p>
       <p>30 N Gould St., Ste R, Sheridan, WY 82801<br>office@humblebusinessconsulting.com<br>humblebusinessconsulting.com</p>
-      <div class="placeholder" data-placeholder="public-contact"><p class="ph-label">Placeholder — Clark to supply: public phone number.</p></div>
     </div>
     <ul aria-label="More">
       <li><a href="scorecard/index.html">Take the Business Independence Scorecard</a></li>

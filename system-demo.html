@@ -13,9 +13,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=IBM+Plex+Mono:wght@400;600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;1,8..60,500&display=swap">
 <link rel="stylesheet" href="site.css">
 </head>
-<body>
+<body class="tap44">
 <a class="skip" href="#main">Skip to main content</a>
-<div class="review-banner" role="note">Review draft for Humble Services, not live yet.</div>
 <header class="site-header">
   <div class="header-inner">
     <a class="brand" href="index.html"><img src="assets/logo.png" alt="" width="44" height="55"><span class="wordmark">Humble Services<small>Business Consulting</small></span></a>
@@ -48,15 +47,15 @@
 <section class="dm-screen" id="dm-door" aria-labelledby="door-h">
   <p class="dm-sample">Sample · made-up data</p>
   <h2 id="door-h">Choose who you are</h2>
-  <p class="narrow">In our test version you open the system with your password and a code from an app on your phone; your books team would open it the same way once the books are built. Here you just pick who you are. Inside, tap any line to see its details.</p>
-  <p class="narrow">Our test version is the working copy of your platform we have built so far. It runs on made-up data and is not open to clients yet.</p>
-  <p class="dm-legend"><span class="dm-badge ok">Works in our test version</span> you can try it in our test version today <span class="dm-badge todo">Not built yet</span> the design we propose</p>
   <div class="dm-door">
     <button type="button" class="dm-person" data-person="owner"><b>You, the owner</b><span>Open the demo as you: your dashboard, the Mac mini, every file, and the books.</span></button>
     <button type="button" class="dm-person" data-person="cfo"><b>Your CFO</b><span>Open the demo as your CFO: all of the books and every report, and the monthly sign&#8209;off.</span></button>
     <button type="button" class="dm-person" data-person="cpa"><b>Your CPA</b><span>Open the demo as your CPA: adjustments, and locking a month once it is closed.</span></button>
     <button type="button" class="dm-person" data-person="acct"><b>An accountant</b><span>Open the demo as an accountant: the day-to-day entries, invoices and payments.</span></button>
   </div>
+  <p class="narrow">In our test version you open the system with your password and a code from an app on your phone; your books team would open it the same way once the books are built. Here you just pick who you are. Inside, tap any line to see its details.</p>
+  <p class="narrow">Our test version is the working copy of your platform we have built so far. It runs on made-up data and is not open to clients yet.</p>
+  <p class="dm-legend"><span class="dm-badge ok">Works in our test version</span> you can try it in our test version today <span class="dm-badge todo">Not built yet</span> the design we propose</p>
 </section>
 
 <div class="dm-shell" id="dm-shell">
@@ -191,7 +190,7 @@
 <section class="dm-screen" id="dm-mini" data-screen="mini" aria-labelledby="mini-h">
   <p class="dm-sample">Sample · made-up data</p>
   <h2 id="mini-h">Mac mini status</h2>
-  <p class="dm-note">Your Mac mini is not set up yet: that is step 1 on the map. This is the screen you would have once it is. Every part on it is marked not built yet, and every figure is an example.</p>
+  <p class="dm-note">Your Mac mini is not set up yet: that is step 1 on the map. This is the screen you would have once it is. Every part on it is marked not built yet, and every figure is an example. Our speed test so far ran on a stand-in computer; the full-size test on the mini itself is step 6 on the map.</p>
   <p class="dm-headline">In this example, the mini is drafting one brief, two briefs wait for your okay, and last night's locked copy finished.</p>
   <div class="dm-tiles">
     <div class="dm-tile ok" data-count="#dm-mini .dm-list .dm-badge.ok"><span class="v">1</span><span class="k">Job running</span></div>
@@ -211,7 +210,7 @@
           <li><button type="button" class="dm-row" data-show="d-job-3" aria-pressed="false" data-queued><span><b>Nightly locked copy</b><small>Starts tonight at 02:00</small></span><span class="dm-badge">Queued</span></button></li>
           <li><button type="button" class="dm-row" data-show="d-job-4" aria-pressed="false" data-done-today><span><b>Pre-call brief · Cedar Hollow Bakery</b><small>Finished 08:40 · waiting for your okay</small></span><span class="dm-badge warn">Waiting for you</span></button></li>
           <li><button type="button" class="dm-row" data-show="d-job-2" aria-pressed="false" data-done-today><span><b>Pre-call brief · Blue Mesa Heating</b><small>Finished 08:05 · waiting for your okay</small></span><span class="dm-badge warn">Waiting for you</span></button></li>
-          <li><button type="button" class="dm-row" data-show="d-job-5" aria-pressed="false" data-done-today><span><b>Nightly locked copy</b><small>Finished 02:31</small></span><span class="dm-badge">Done</span></button></li>
+          <li><button type="button" class="dm-row" data-show="d-job-5" aria-pressed="false" data-done-today><span><b>Nightly locked copy</b><small>Finished 02:31 · example</small></span><span class="dm-badge">Example: done</span></button></li>
         </ul>
       </div>
       <div class="dm-two">
@@ -231,11 +230,11 @@
       <div class="dm-two">
         <div class="dm-frame">
           <h3 class="dm-hd">Back-ups <span class="dm-badge todo">Not built yet</span></h3>
-          <p class="dm-gloss">A locked copy is scrambled so only your key opens it. A test restore rebuilds everything from a copy to prove the copy works.</p>
+          <p class="dm-gloss">A locked copy is scrambled so only your key opens it. A test restore rebuilds everything from a copy to prove the copy works. The results below are examples; nothing has run yet.</p>
           <ul class="dm-list">
-            <li><button type="button" class="dm-row" data-show="d-bk-1" aria-pressed="false"><span><b>Last nightly locked copy</b><small>Today 02:31, to the encrypted drive</small></span><span class="dm-badge">Done</span></button></li>
+            <li><button type="button" class="dm-row" data-show="d-bk-1" aria-pressed="false"><span><b>Last nightly locked copy</b><small>Today 02:31, to the encrypted drive · example</small></span><span class="dm-badge">Example: done</span></button></li>
             <li><button type="button" class="dm-row" data-show="d-bk-2" aria-pressed="false"><span><b>Second copy, kept somewhere else</b><small>Comes later · place to be chosen with you</small></span></button></li>
-            <li><button type="button" class="dm-row" data-show="d-bk-3" aria-pressed="false"><span><b>Last test restore</b><small>Sunday, from Saturday's copy</small></span><span class="dm-badge">Passed</span></button></li>
+            <li><button type="button" class="dm-row" data-show="d-bk-3" aria-pressed="false"><span><b>Last test restore</b><small>Sunday, from Saturday's copy · example</small></span><span class="dm-badge">Example: passed</span></button></li>
           </ul>
         </div>
         <div class="dm-frame">
@@ -276,7 +275,7 @@
 <section class="dm-screen" id="dm-vault" data-screen="vault" aria-labelledby="vault-h">
   <p class="dm-sample">Sample · made-up data</p>
   <h2 id="vault-h">File vault</h2>
-  <p class="dm-headline">The files the mini would hold, grouped by client. Four clients are shown as a sample. Client records sit behind the wall: only you can open them.</p>
+  <p class="dm-headline">The files the mini would hold, grouped by client. Four clients are shown as a sample. Client records sit behind the wall: only you can open them. The wall is the design; it is not built yet.</p>
   <p class="dm-legend"><span class="dm-badge lock">You only</span><span class="dm-badge ok">You and the books team</span><span class="dm-badge key">Locked, only you hold the key</span></p>
   <div class="dm-body">
     <div>
@@ -419,11 +418,11 @@
       </div>
       <div class="dm-frame dm-wall" data-roles="cfo cpa acct">
         <h3 class="dm-hd">Client records <span class="dm-badge lock">Not visible to you</span></h3>
-        <p>Business files, documents, call notes and briefs stay behind the wall. Only the owner can open them. You see the invoices and payments, never what is inside a client's file.</p>
+        <p>Business files, documents, call notes and briefs stay behind the wall. Only the owner can open them. You see the invoices and payments, never what is inside a client's file. This wall is the design; it is not built yet.</p>
       </div>
       <div class="dm-frame dm-wall" data-roles="owner">
         <h3 class="dm-hd">Client records <span class="dm-badge lock">You only</span></h3>
-        <p>Your books team never sees these. They see invoices and payments, never what is inside a client's file.</p>
+        <p>Your books team never sees these. They see invoices and payments, never what is inside a client's file. This wall is the design; it is not built yet.</p>
         <div class="dm-acts"><button type="button" class="dm-btn" data-goto="vault">Open the file vault</button></div>
       </div>
     </div>
@@ -458,7 +457,6 @@
     <div>
       <p><b>Humble Services Business Consulting</b><br>A d/b/a of Humble Services, Inc., a Wyoming corporation. Available to owners across the United States.</p>
       <p>30 N Gould St., Ste R, Sheridan, WY 82801<br>office@humblebusinessconsulting.com<br>humblebusinessconsulting.com</p>
-      <div class="placeholder" data-placeholder="public-contact"><p class="ph-label">Placeholder — Clark to supply: public phone number.</p></div>
     </div>
     <ul aria-label="More">
       <li><a href="scorecard/index.html">Take the Business Independence Scorecard</a></li>

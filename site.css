@@ -431,3 +431,4 @@ table.dm-table { width: 100%; border-collapse: collapse; font-size: .92rem; }
   .dm-tile:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .dm-pill, .dm-btn, .dm-stage { min-height: 44px; }
 }
+.dm-door { margin-bottom: 1.2rem; }
