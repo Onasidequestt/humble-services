@@ -66,6 +66,7 @@
     var b = document.createElement('b');
     b.textContent = PEOPLE[p];
     who.appendChild(b);
+    who.appendChild(el('small', 'dm-signin', ' · opened with a password and a phone code (pretend)'));
     pills.forEach(function (x) { x.parentNode.hidden = !forPerson(x); });
     app.querySelectorAll('[data-roles]').forEach(function (el) { el.hidden = !forPerson(el); });
     show(p === 'owner' ? 'home' : /^board_/.test(p) ? 'company' : /^(cfo|cpa|acct)$/.test(p) ? 'books' : 'access', true);
@@ -113,11 +114,12 @@
     if (!tr || !list) return;
     while (list.firstChild) list.removeChild(list.firstChild);
     var n = { none: 0, rollup: 0, read: 0, write: 0 };
-    cats.forEach(function (th, i) {
-      var lv = level(tr, i); n[lv]++;
+    var order = cats.map(function (th, i) { return i; }).sort(function (a, b) { return LEVELS.indexOf(level(tr, b)) - LEVELS.indexOf(level(tr, a)) || a - b; });
+    order.forEach(function (i) {
+      var th = cats[i], lv = level(tr, i); n[lv]++;
       var b = el('button', 'dm-row' + (lv === 'none' ? ' locked' : '')); b.type = 'button'; b.setAttribute('aria-pressed', 'false'); b.setAttribute('data-cat', th.getAttribute('data-cat'));
       var t = el('span'); t.appendChild(el('b', '', th.textContent));
-      t.appendChild(el('small', '', lv === 'none' ? 'Locked for this seat' : th.getAttribute(lv === 'rollup' ? 'data-rollup' : 'data-read')));
+      t.appendChild(el('small', '', lv === 'none' ? '' : th.getAttribute(lv === 'rollup' ? 'data-rollup' : 'data-read')));
       b.appendChild(t); b.appendChild(badge(tr, i));
       var li = el('li'); li.appendChild(b); list.appendChild(li);
     });
@@ -148,8 +150,8 @@
         var w = el('div', 'dm-frame dm-wall ac-wall');
         w.appendChild(el('p', 'dm-headline', 'No access'));
         w.appendChild(el('p', '', seatName(tr) + ' cannot open ' + th.textContent.toLowerCase() + '. The system would refuse.'));
-        var nb = el('p'); nb.appendChild(el('span', 'dm-badge todo', 'Not built yet')); w.appendChild(nb);
         d.appendChild(w);
+        d.appendChild(el('p', 'dm-gloss', 'This refusal is the design we propose; it is not built yet.'));
       } else {
         var p = el('p'); p.appendChild(badge(tr, i));
         p.appendChild(document.createTextNode(' ' + th.getAttribute(lv === 'rollup' ? 'data-rollup' : 'data-read') + (lv === 'write' ? ' This seat can also change it.' : '')));

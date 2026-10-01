@@ -515,3 +515,19 @@ table.dm-table { width: 100%; border-collapse: collapse; font-size: .92rem; }
 }
 /* r2 page critic: the sticky switcher must not cover a screen's heading when it is focused or scrolled to */
 @media (max-width: 900px) { #dm-app .dm-screen h2, #dm-app .og-table tr { scroll-margin-top: 150px; } }
+/* r8 panel pass (2026-09-30): plain headline list, bigger phone map rows, compact locked rows, sign-in note, back to top */
+.og-head { margin: 0 0 14px; display: grid; gap: 6px; max-width: 46rem; }
+.og-head li { padding-left: 12px; border-left: 3px solid var(--brand); }
+.og-node { min-height: 44px; }
+#ac-list .dm-row.locked { min-height: 44px; padding-top: 6px; padding-bottom: 6px; }
+#ac-list .dm-row.locked .dm-badge { opacity: 1; }
+.dm-signin { color: var(--mid); }
+.dm-top { display: inline-flex; align-items: center; min-height: 44px; margin: 8px 0 0; }
+@media (max-width: 480px) {
+  #dm-company .dm-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #dm-company .dm-tile:last-child:nth-child(odd) { grid-column: auto; }
+  .og-node { padding: 8px 10px; }
+  .og-node b { font-size: 1rem; }
+  .og-node small { font-size: .85rem; }
+}
+@media (max-width: 600px) { .dm-signin { display: none; } }
