@@ -140,7 +140,7 @@
       ' can open ' + (n.write + n.read) + ' of the ' + cats.length + ' kinds of records' + (n.rollup ? ', sees ' + n.rollup + ' as totals only,' : '') +
       ' and is locked out of ' + n.none + '.' +
       // r5 client critic: say why the CPA reads pay, so it reads as deliberate, not a leak.
-      (tr.getAttribute('data-seat') === 'cpa' && level(tr, cats.map(function (c) { return c.getAttribute('data-cat'); }).indexOf('salary')) !== 'none' ? ' Your CPA reads pay records because payroll taxes are filed from them.' : '') + (person === 'acct' ? ' In this example org an accountant sits in the same seat as your CPA.' : '');
+      (tr.getAttribute('data-seat') === 'cpa' && level(tr, cats.map(function (c) { return c.getAttribute('data-cat'); }).indexOf('salary')) !== 'none' ? ' In the design we propose your CPA reads pay records, for the payroll tax filings; you decide whether that stays.' : '') + (person === 'acct' ? ' In this example org an accountant sits in the same seat as your CPA.' : '');
   }
   function whoCan(i) {
     return seatRows.filter(function (r) { return level(r, i) === 'read' || level(r, i) === 'write'; }).map(seatName).join(', ');
@@ -155,7 +155,6 @@
         w.appendChild(el('p', 'dm-headline', 'No access'));
         w.appendChild(el('p', '', seatName(tr) + ' cannot open ' + th.textContent.toLowerCase() + '. The system would refuse.'));
         d.appendChild(w);
-        d.appendChild(el('p', 'dm-gloss', 'This refusal is the design we propose; it is not built yet.'));
       } else {
         var p = el('p'); p.appendChild(badge(tr, i));
         p.appendChild(document.createTextNode(' ' + th.getAttribute(lv === 'rollup' ? 'data-rollup' : 'data-read') + (lv === 'write' ? ' This seat can also change it.' : '')));
