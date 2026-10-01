@@ -135,8 +135,12 @@
         sum.appendChild(li);
       });
     }
-    document.getElementById('ac-head').textContent = 'Open as ' + seatName(tr) + (tr.getAttribute('data-kind') === 'ai' ? ' (AI seat): ' : ' (human seat): ') +
-      (n.write + n.read) + ' to read, ' + n.rollup + ' as totals only, ' + n.none + ' locked.' + (person === 'acct' ? ' In this example org an accountant sits in the same seat as your CPA.' : '');
+    // r4 page critic: plain words, not a count to decode; totals only is named only when the seat has some.
+    document.getElementById('ac-head').textContent = seatName(tr) + (tr.getAttribute('data-kind') === 'ai' ? ' (AI seat)' : '') +
+      ' can open ' + (n.write + n.read) + ' of the ' + cats.length + ' kinds of records' + (n.rollup ? ', sees ' + n.rollup + ' as totals only,' : '') +
+      ' and is locked out of ' + n.none + '.' +
+      // r5 client critic: say why the CPA reads pay, so it reads as deliberate, not a leak.
+      (tr.getAttribute('data-seat') === 'cpa' && level(tr, cats.map(function (c) { return c.getAttribute('data-cat'); }).indexOf('salary')) !== 'none' ? ' Your CPA reads pay records because payroll taxes are filed from them.' : '') + (person === 'acct' ? ' In this example org an accountant sits in the same seat as your CPA.' : '');
   }
   function whoCan(i) {
     return seatRows.filter(function (r) { return level(r, i) === 'read' || level(r, i) === 'write'; }).map(seatName).join(', ');

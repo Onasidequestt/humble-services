@@ -531,3 +531,6 @@ table.dm-table { width: 100%; border-collapse: collapse; font-size: .92rem; }
   .og-node small { font-size: .85rem; }
 }
 @media (max-width: 600px) { .dm-signin { display: none; } }
+/* r5: the email's two examples stand out from the 23 */
+.og-start .dm-person { border-color: var(--brand); background: var(--ok-wash); }
+.og-start .dm-badge { align-self: flex-start; width: max-content; margin: 4px 0; }
