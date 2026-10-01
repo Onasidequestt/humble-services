@@ -244,7 +244,7 @@
         </div>
         <div class="dm-frame">
           <h3 class="dm-hd">Who is connected</h3>
-          <p>Your team reaches the mini through the private network app: a small app on each of their devices that lets only those devices in. Only people you add can use the mini. Your clients can reach just their own pages: booking a call, and reading and signing a proposal. That works through one connection the mini opens outward. The devices and times below are examples.</p>
+          <p>Your team reaches the mini through the private network app: a small app on each of their devices that lets only those devices in. In the design we propose, only people you add could use the mini, and your clients could reach just their own pages: booking a call, and reading and signing a proposal, through one connection the mini opens outward. The devices and times below are examples.</p>
           <ul class="dm-list">
             <li><button type="button" class="dm-row" data-show="d-net-1" aria-pressed="false"><span><b>You · phone</b><small>Connected now</small></span></button></li>
             <li><button type="button" class="dm-row" data-show="d-net-2" aria-pressed="false"><span><b>You · laptop</b><small>Last seen 07:55</small></span></button></li>
@@ -269,7 +269,7 @@
       <div class="dm-detail" id="d-bk-3"><h4>Last test restore</h4><p>The mini rebuilds everything from a copy in a spare space and checks that it all came back. A copy is only trusted once a restore from it has worked (step 4 on the map).</p></div>
       <div class="dm-detail" id="d-net-1"><h4>You · phone</h4><p>Reaches everything you can see.</p><div class="dm-acts"><button type="button" class="dm-btn" data-say="In the real system this removes the device at once.">Remove this device</button></div></div>
       <div class="dm-detail" id="d-net-2"><h4>You · laptop</h4><p>Reaches everything you can see.</p></div>
-      <div class="dm-detail" id="d-net-3"><h4>Your CPA · laptop</h4><p>Reaches the platform, where it can open the books only, never client records.</p><div class="dm-acts"><button type="button" class="dm-btn" data-say="In the real system this removes your CPA's access at once. You can add them back later.">Remove access</button></div></div>
+      <div class="dm-detail" id="d-net-3"><h4>Your CPA · laptop</h4><p>In the design we propose, it would reach the platform and open the books only, never client records.</p><div class="dm-acts"><button type="button" class="dm-btn" data-say="In the real system this removes your CPA's access at once. You can add them back later.">Remove access</button></div></div>
       <div class="dm-detail" id="d-net-4"><h4>An accountant · laptop</h4><p>Reaches the books only. You add and remove each person.</p><div class="dm-acts"><button type="button" class="dm-btn" data-say="In the real system this removes the accountant's access at once.">Remove access</button></div></div>
       <p class="dm-say" aria-live="polite"></p>
     </aside>
@@ -338,7 +338,7 @@
           <tr><td>Business file (seven sections)</td><td class="n">7</td></tr><tr><td>Documents you add</td><td class="n">3</td></tr><tr><td>Call notes</td><td class="n">1</td></tr><tr><td>Pre-call briefs</td><td class="n">1</td></tr></tbody></table>
         <p>Who can see: <span class="dm-badge lock">You only</span></p>
       </div>
-      <div class="dm-detail" id="d-vb"><h4>The books</h4><p>Ledger, invoices, payments and reports for your own business. Open to you and to your CPA, CFO and accountants. They cannot see any client record.</p><p><span class="dm-badge todo">Not built yet</span></p><div class="dm-acts"><button type="button" class="dm-btn go" data-goto="books">Open the books</button></div></div>
+      <div class="dm-detail" id="d-vb"><h4>The books</h4><p>Ledger, invoices, payments and reports for your own business. Today, open to you and your books team. In the bigger company on the Company screen, the finance and accounting seats would open them and the board would see totals. None of them can see a client record.</p><p><span class="dm-badge todo">Not built yet</span></p><div class="dm-acts"><button type="button" class="dm-btn go" data-goto="books">Open the books</button></div></div>
       <div class="dm-detail" id="d-vk"><h4>Nightly locked copies</h4><p>A locked copy of everything above, every night, on the encrypted drive. A second copy kept somewhere else comes later. Only you hold the key. When we set this up, we help you choose a safe place to keep it, because without the key a copy cannot be opened.</p><p><span class="dm-badge todo">Not built yet</span></p></div>
     </aside>
   </div>
@@ -427,8 +427,8 @@
         <p>Business files, documents, call notes and briefs stay behind the wall. Today only the owner can open them. You see the invoices and payments, never what is inside a client's file. This wall is the design; it is not built yet.</p>
       </div>
       <div class="dm-frame dm-wall" data-roles="owner">
-        <h3 class="dm-hd">Client records <span class="dm-badge lock">You only</span></h3>
-        <p>Your books team never sees these. They see invoices and payments, never what is inside a client's file. This wall is the design; it is not built yet.</p>
+        <h3 class="dm-hd">Client records <span class="dm-badge lock">Today: you only</span></h3>
+        <p>Your books team never sees these. The Company screen shows which seats would open them as the company grows. They see invoices and payments, never what is inside a client's file. This wall is the design; it is not built yet.</p>
         <div class="dm-acts"><button type="button" class="dm-btn" data-goto="vault">Open the file vault</button></div>
       </div>
     </div>
