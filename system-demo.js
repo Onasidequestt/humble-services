@@ -121,6 +121,18 @@
       b.appendChild(t); b.appendChild(badge(tr, i));
       var li = el('li'); li.appendChild(b); list.appendChild(li);
     });
+    // Summary first: what this login can open, sees as totals only, and cannot open, read from the same row.
+    var sum = document.getElementById('ac-sum');
+    if (sum) {
+      while (sum.firstChild) sum.removeChild(sum.firstChild);
+      [['Can open', ['read', 'write'], 'ok'], ['Totals only', ['rollup'], 'key'], ['Cannot open', ['none'], 'bad']].forEach(function (g) {
+        var names = cats.filter(function (th, i) { return g[1].indexOf(level(tr, i)) >= 0; }).map(function (th) { return th.textContent; });
+        if (!names.length) return;  // an empty group is noise (r2 page critic)
+        var li = el('li'); li.appendChild(el('span', 'dm-badge ' + g[2], g[0]));
+        li.appendChild(document.createTextNode(' ' + names.join(', ')));
+        sum.appendChild(li);
+      });
+    }
     document.getElementById('ac-head').textContent = 'Open as ' + seatName(tr) + (tr.getAttribute('data-kind') === 'ai' ? ' (AI seat): ' : ' (human seat): ') +
       (n.write + n.read) + ' to read, ' + n.rollup + ' as totals only, ' + n.none + ' locked.' + (person === 'acct' ? ' In this example org an accountant sits in the same seat as your CPA.' : '');
   }
@@ -249,6 +261,8 @@
   app.addEventListener('click', function (e) {
     var t = e.target.closest('button');
     if (!t || !app.contains(t)) return;
+    // data-login: the whole-company door (map and 23 logins); same as data-person, kept apart so the books walk-through stays first.
+    if (t.hasAttribute('data-login')) { openAs(t.getAttribute('data-login')); show(t.getAttribute('data-go'), true); return; }
     if (t.hasAttribute('data-person')) { openAs(t.getAttribute('data-person')); if (t.hasAttribute('data-go')) show(t.getAttribute('data-go'), true); return; }
     if (t.id === 'dm-change') { backToDoor(); return; }
     if (t.classList.contains('dm-back')) {
@@ -292,4 +306,6 @@
   screens.forEach(function (s) { resetInspector(s); });
   var m = /^#as-([a-z_]+)$/.exec(window.location.hash);
   if (m && PEOPLE[m[1]]) openAs(m[1]);
+  var l = /^#login-([a-z_]+)$/.exec(window.location.hash);  // a login's can / cannot-open view, for example #login-cfo
+  if (l && PEOPLE[l[1]]) { openAs(l[1]); show('access', true); }
 })();

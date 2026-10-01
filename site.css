@@ -501,3 +501,17 @@ table.dm-table { width: 100%; border-collapse: collapse; font-size: .92rem; }
 .og-ex li { margin: .3rem 0; }
 @media (min-width: 901px) { .og-tbl .dm-scroll { -webkit-mask-image: linear-gradient(90deg, var(--ink) 92%, transparent); mask-image: linear-gradient(90deg, var(--ink) 92%, transparent); padding-right: 40px; } }
 @media (max-width: 480px) { .og-depts .og-col { margin-left: 22px; } }
+/* B2: seat summary. Access screen leads with Can open / Totals only / Cannot open; below 600px the seat table is one card per seat. */
+.ac-sum li { margin: .35rem 0; }
+.ac-sum .dm-badge { margin-right: .4rem; }
+.og-table td.og-sum { display: none; }
+@media (max-width: 600px) {
+  .og-table td[data-level] { display: none; }
+  .og-table { width: 100%; }
+  .og-table td.og-sum { display: block; padding: 4px 0 0; white-space: normal; overflow-wrap: anywhere; }
+  .og-table td.og-sum::before { content: none; }
+  .og-sum .og-g { display: block; margin: 3px 0; }
+  .og-sum .og-g2 { color: var(--mid); }
+}
+/* r2 page critic: the sticky switcher must not cover a screen's heading when it is focused or scrolled to */
+@media (max-width: 900px) { #dm-app .dm-screen h2, #dm-app .og-table tr { scroll-margin-top: 150px; } }
