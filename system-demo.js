@@ -319,6 +319,8 @@
   // On a phone the seat table folds away behind "Show the seat table"; the map and each seat's view already read from it.
   var tbl = document.getElementById('og-tbl');
   if (tbl && narrow.matches) tbl.open = false;
+  var kf = document.getElementById('og-keyfold');  // the 23-shade key folds the same way on a phone
+  if (kf && narrow.matches) kf.open = false;
 
   // Start at the front door, or straight in when the link names a person (for example system-demo.html#as-cfo).
   shell.hidden = true;

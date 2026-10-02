@@ -607,5 +607,10 @@ table.dm-table { width: 100%; border-collapse: collapse; font-size: .92rem; }
 .og-chip.open, .og-chip.h { background: var(--paper); border: 1.5px dashed var(--brand); }
 .og-chip.h.owner { border-style: solid; background: var(--ok-wash); }
 .dm-legend .og-chip { display: inline-block; margin: 0 6px 6px 0; }
+.og-keyfold > summary { cursor: pointer; display: flex; align-items: center; justify-content: space-between; min-height: 44px; padding: 0 14px; border: 1px solid var(--brand); border-radius: 999px; color: var(--brand-deep); font-size: .92rem; font-weight: 600; margin: .2rem 0 .6rem; list-style: none; }
+.og-keyfold > summary::-webkit-details-marker { display: none; }
+.og-keyfold > summary::after { content: '\25BE'; font-size: 1.1rem; }
+.og-keyfold[open] > summary::after { content: '\25B4'; }
+@media (min-width: 901px) { .og-keyfold > summary { display: none; } }
 .og-key { display: grid; grid-template-columns: repeat(auto-fill, minmax(11.5rem, 1fr)); gap: 4px 12px; list-style: none; margin: .4rem 0 1rem; padding: 0; font-size: .85rem; }
 .og-table td .og-sw { margin-right: 6px; }
