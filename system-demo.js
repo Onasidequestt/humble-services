@@ -21,6 +21,8 @@
   var cats = [].slice.call(app.querySelectorAll('#og-seats thead th[data-cat]'));
   function seat(k) { return app.querySelector('#og-seats tr[data-seat="' + k + '"]'); }
   function seatName(tr) { return tr.querySelector('th').textContent; }
+  // Each role for a person has a dedicated AI agent row (data-ai / data-standin); the map draws the agent inside its role's box.
+  function drawn(r) { return !r.hasAttribute('data-standin'); }
   seatRows.forEach(function (tr) { var k = tr.getAttribute('data-seat'); if (!PEOPLE[k]) PEOPLE[k] = seatName(tr); });
   var person = null;
   // On a phone the inspector would sit far below the list, so it moves to just under the panel that was tapped,
@@ -85,7 +87,7 @@
   // The four levels of the access model, lowest first; each table cell carries its level code in data-level.
   var LEVELS = ['none', 'rollup', 'read', 'write'];
   var BADGE = { none: 'bad', rollup: 'key', read: 'ok', write: 'ok' };
-  var AI_NOTE = 'An AI seat opens only what the seat table lists for it, never more than Read: it reads and proposes, and a person approves any change. Where its work runs, and what may leave the company, is not decided yet.';
+  var AI_NOTE = 'An AI agent opens only what the seat table lists for it, never more than Read: it reads and proposes, and a person approves any change. Where its work runs, and what may leave the company, is not decided yet.';
   function cell(tr, i) { return tr.querySelectorAll('td[data-level]')[i]; }
   function level(tr, i) { return cell(tr, i).getAttribute('data-level'); }
   function word(tr, i) { return cell(tr, i).textContent; }
@@ -136,14 +138,14 @@
       });
     }
     // r4 page critic: plain words, not a count to decode; totals only is named only when the seat has some.
-    document.getElementById('ac-head').textContent = seatName(tr) + (tr.getAttribute('data-kind') === 'ai' ? ' (AI seat)' : '') +
+    document.getElementById('ac-head').textContent = seatName(tr) + (tr.getAttribute('data-kind') === 'ai' ? ' (AI agent)' : '') +
       ' can open ' + (n.write + n.read) + ' of the ' + cats.length + ' kinds of records' + (n.rollup ? ', sees ' + n.rollup + ' as totals only,' : '') +
       ' and is locked out of ' + n.none + '.' +
       // r5 client critic: say why the CPA reads pay, so it reads as deliberate, not a leak.
       (tr.getAttribute('data-seat') === 'cpa' && level(tr, cats.map(function (c) { return c.getAttribute('data-cat'); }).indexOf('salary')) !== 'none' ? ' In the design we propose your CPA reads pay records, for the payroll tax filings; you decide whether that stays.' : '') + (person === 'acct' ? ' In this example org an accountant sits in the same seat as your CPA.' : '');
   }
   function whoCan(i) {
-    return seatRows.filter(function (r) { return level(r, i) === 'read' || level(r, i) === 'write'; }).map(seatName).join(', ');
+    return seatRows.filter(function (r) { return drawn(r) && (level(r, i) === 'read' || level(r, i) === 'write'); }).map(seatName).join(', ');
   }
   function catDetail(btn) {
     var tr = tableSeat(person), key = btn.getAttribute('data-cat');
@@ -172,15 +174,22 @@
   // a team hangs off its manager, so no line runs through another department's boxes.
   var oneCol = window.matchMedia('(max-width: 480px)');
   function node(tr, depth) {
-    var b = el('button', 'og-node' + (tr.getAttribute('data-kind') === 'ai' ? ' ai' : '') + (depth ? ' og-kid' : ''));
+    var ai = tr.getAttribute('data-kind') === 'ai';
+    var b = el('button', 'og-node' + (ai ? ' ai ai-s' + tr.getAttribute('data-shade') : '') + (depth ? ' og-kid' : ''));
     b.type = 'button'; b.setAttribute('aria-pressed', 'false'); b.setAttribute('data-seat', tr.getAttribute('data-seat'));
     if (depth) b.style.marginLeft = (depth * 22) + 'px';
     b.appendChild(el('b', '', seatName(tr)));
-    if (tr.getAttribute('data-kind') === 'ai') b.appendChild(el('span', 'dm-badge ai', 'AI seat'));
-    else b.appendChild(el('small', '', tr.querySelector('td').textContent));
+    if (ai) b.appendChild(el('span', 'dm-badge ai', 'AI agent'));
+    else {
+      b.appendChild(el('small', '', tr.querySelector('td').textContent));
+      var a = seat(tr.getAttribute('data-ai')), chips = el('span', 'og-chips');
+      chips.appendChild(el('span', 'og-chip h' + (tr.getAttribute('data-held') === 'owner' ? ' owner' : ' open'), tr.getAttribute('data-held') === 'owner' ? 'Person: you, the owner' : 'Person: open position'));
+      chips.appendChild(el('span', 'og-chip ai ai-s' + a.getAttribute('data-shade'), 'AI: ' + seatName(a)));
+      b.appendChild(chips);
+    }
     return b;
   }
-  function kids(k) { return seatRows.filter(function (r) { return r.getAttribute('data-parent') === k; }); }
+  function kids(k) { return seatRows.filter(function (r) { return drawn(r) && r.getAttribute('data-parent') === k; }); }
   function addKids(col, k, depth) { kids(k).forEach(function (c) { col.appendChild(node(c, depth)); addKids(col, c.getAttribute('data-seat'), depth + 1); }); }
   function drawMap() {
     if (!map || map.getAttribute('data-drawn')) { lines(); return; }
@@ -189,7 +198,7 @@
     var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); svg.setAttribute('class', 'og-lines'); svg.setAttribute('aria-hidden', 'true');
     map.appendChild(svg);
     // Seats that report to no one: the board members sit on top, the CEO below them.
-    var roots = seatRows.filter(function (r) { return !r.getAttribute('data-parent'); });
+    var roots = seatRows.filter(function (r) { return drawn(r) && !r.getAttribute('data-parent'); });
     var ceo = roots.filter(function (r) { return kids(r.getAttribute('data-seat')).length; })[0];
     var top = el('div', 'og-top');
     roots.filter(function (r) { return r !== ceo; }).forEach(function (r) { top.appendChild(node(r, 0)); });
@@ -237,7 +246,10 @@
     openInsp(btn.closest('.dm-screen'), btn, function (d) {
       d.appendChild(el('h4', '', seatName(tr)));
       var kv = el('dl', 'dm-kv'), td = tr.querySelectorAll('td');
-      [['Department', td[0].textContent], ['Kind', td[1].textContent]].forEach(function (p) { kv.appendChild(el('dt', '', p[0])); kv.appendChild(el('dd', '', p[1])); });
+      var rows = [['Department', td[0].textContent], ['Kind', td[1].textContent]];
+      if (tr.hasAttribute('data-ai')) rows.push(['Held by', tr.getAttribute('data-held') === 'owner' ? 'You, the owner' : 'Open position: a person will be added here'], ['Does the work now', seatName(seat(tr.getAttribute('data-ai'))) + ' (AI)']);
+      if (tr.hasAttribute('data-standin')) rows.push(['Stands in for', seatName(seat(tr.getAttribute('data-standin'))) + ' until a person fills the role']);
+      rows.forEach(function (p) { kv.appendChild(el('dt', '', p[0])); kv.appendChild(el('dd', '', p[1])); });
       d.appendChild(kv);
       LEVELS.slice().reverse().forEach(function (lv) {
         var idx = cats.map(function (c, i) { return i; }).filter(function (i) { return level(tr, i) === lv; });
@@ -247,7 +259,9 @@
       });
       if (tr.getAttribute('data-kind') === 'ai') d.appendChild(el('p', '', AI_NOTE));
       var acts = el('div', 'dm-acts'), go = el('button', 'dm-btn go', 'Open as this seat'); go.type = 'button'; go.setAttribute('data-person', tr.getAttribute('data-seat'));
-      acts.appendChild(go); d.appendChild(acts);
+      acts.appendChild(go);
+      if (tr.hasAttribute('data-ai')) { var g2 = el('button', 'dm-btn go', 'Open as its AI agent'); g2.type = 'button'; g2.setAttribute('data-person', tr.getAttribute('data-ai')); acts.appendChild(g2); }
+      d.appendChild(acts);
     });
   }
 
@@ -266,7 +280,7 @@
   app.addEventListener('click', function (e) {
     var t = e.target.closest('button');
     if (!t || !app.contains(t)) return;
-    // data-login: the whole-company door (map and 23 logins); same as data-person, kept apart so the books walk-through stays first.
+    // data-login: the whole-company door (map and every login); same as data-person, kept apart so the books walk-through stays first.
     if (t.hasAttribute('data-login')) { openAs(t.getAttribute('data-login')); show(t.getAttribute('data-go'), true); return; }
     if (t.hasAttribute('data-person')) { openAs(t.getAttribute('data-person')); if (t.hasAttribute('data-go')) show(t.getAttribute('data-go'), true); return; }
     if (t.id === 'dm-change') { backToDoor(); return; }
