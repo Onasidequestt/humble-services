@@ -256,7 +256,7 @@ fieldset { border: 0; padding: 0; margin: 0; }
      The opened list spans the full width below; the link sits on top of the details box, so it stays tappable. */
   .header-inner { row-gap: 10px; }
   .brand { grid-column: 1 / -1; } /* full first row, so the wordmark is not squeezed by the link's column */
-  .header-cta { grid-column: 2; grid-row: 2; align-self: start; position: relative; z-index: 1; }
+  .header-cta { grid-column: 2; grid-row: 2; align-self: start; margin: 4px 14px 0 0; position: relative; z-index: 1; } /* inside the green bar: bar is 2px margin + 2px padding + 44px toggle, 14px side padding */
   .site-nav { padding: 8px 0 0; }
   .site-nav ul { display: block; }
   .site-nav a { display: flex; padding: 9px 0; border-bottom: 1px solid var(--line); }
@@ -275,6 +275,7 @@ fieldset { border: 0; padding: 0; margin: 0; }
    no bounce, no slide and no parallax. Each feature is plain CSS that an older browser ignores, leaving the instant
    change it had before; no content ever waits on an animation to become visible. Durations stay at or under 220ms.
    Checked by site_tools/check_motion.js (static rules + real-browser rungs, each proven by a red mutant). */
+@media (max-width: 350px) { .header-cta { padding: 8px 10px; font-size: .8rem; } .nav-toggle { padding: 8px 12px; } }
 @media (prefers-reduced-motion: no-preference) {
   :root { interpolate-size: allow-keywords; } /* lets heights ease to "auto" (Chrome/Edge 129+); elsewhere they snap */
   html { scroll-behavior: smooth; } /* in-page jumps (Services index, skip link) glide instead of cutting */
