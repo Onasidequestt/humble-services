@@ -109,7 +109,7 @@
 
     var base = window.HUMBLE_FORMS_BASE_URL;
     if (!base) {
-      notice.textContent = 'This is a review draft, so nothing was sent. On the live site this step would send your request, and we would email you back to confirm a time.';
+      notice.textContent = 'To book a time, call us at 1.307.296.0595 or email office@humblebusinessconsulting.com.';
       notice.hidden = false;
       notice.focus();
       return;
